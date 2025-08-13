@@ -11,7 +11,7 @@ export default function MapViewer() {
         <>
             <div>
                 <img
-                    src={mapData.images.pois}
+                    src={mapData.images.blank}
                     alt='Fortnite POIs map'
                     className='w-full rounded-4xl'
                 />
