@@ -8,5 +8,4 @@ export default defineConfig(({ mode }) => ({
     react(),
     tailwindcss()
   ],
-  base: mode === 'production' ? '/project_lander/' : '/',
 }))
