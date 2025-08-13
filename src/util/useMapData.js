@@ -1,3 +1,5 @@
+// Custom hook to fetch the map data from fortnite-api.com
+// Returns the mapData, loading status and any errors.
 import { useEffect, useState } from "react";
 
 export function useMapData() {
