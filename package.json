@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://apeskinian.github.io/project_lander",
+  "homepage": "https://lander.apeskinian.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
