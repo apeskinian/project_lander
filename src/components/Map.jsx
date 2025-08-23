@@ -54,7 +54,7 @@ export default function Map() {
                         <>
                             <div
                                 key={`${chosenPOI.left}+${chosenPOI.top}`}
-                                className="absolute text-amber-300 flex flex-col items-center whitespace-nowrap"
+                                className="absolute text-amber-300 flex flex-col items-center sm:whitespace-nowrap"
                                 style={{
                                     left: `${chosenPOI.left}px`,
                                     top: `${chosenPOI.top}px`,
@@ -66,15 +66,16 @@ export default function Map() {
                                     icon={faBullseye}
                                     beat
                                 />
+                                <p
+                                    id="chosen-poi"
+                                    className="absolute mt-7 md:mt-10 text-white drop-shadow-[0_0_4px_black] md:text-2xl"
+                                >
+                                    {chosenPOI.name.toUpperCase()}
+                                </p>
                             </div>
                         </>
                     )}
                 </div>
-                {chosenPOI && (
-                    <p className="absolute mt-3 text-2xl text-white">
-                        {chosenPOI.name.toUpperCase()}
-                    </p>
-                )}
             </div >
         </>
     )

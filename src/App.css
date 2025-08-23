@@ -30,3 +30,7 @@ h2 {
     flex-direction: column;
     align-items: center;
 }
+
+#chosen-poi {
+    font-family: 'Fjalla One', sans-serif;
+}
