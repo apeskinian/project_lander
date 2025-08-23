@@ -25,6 +25,7 @@ export default function Map() {
 
     return (
         <>
+        <div id="map-container">
             <div id='map' className="relative">
                 <img
                     src={mapData.images.blank}
@@ -49,6 +50,7 @@ export default function Map() {
                     )
                 })}
             </div>
+        </div>
         </>
     )
 }

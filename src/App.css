@@ -26,3 +26,9 @@ h2 {
     font-size: 1.8rem;
     cursor: default;
 }
+
+#map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
