@@ -30,9 +30,6 @@ export default function Map() {
 
     useEffect(() => {
         zoomOutReset();
-        setTimeout(() => {
-            setChosenPOI(null);
-        }, 2000);
     }, [useFullPOIS, resetTimestamp]);
 
     if (loading) return <p>Loading map...</p>;
