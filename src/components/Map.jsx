@@ -2,7 +2,9 @@ import { useMapData } from "../util/useMapData"
 import { gameToImage } from "../util/pixelMap";
 import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
-import { pickRandom, random } from "mathjs";
+import { faBullseye } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 export default function Map() {
     const imageRef = useRef(null);
@@ -15,6 +17,7 @@ export default function Map() {
         const observer = new ResizeObserver(([entry]) => {
             const { width, height } = entry.contentRect;
             setImageSize({ width, height });
+            setChosenPOI(null)
         });
         if (imageRef.current) observer.observe(imageRef.current);
         return () => observer.disconnect();
@@ -40,7 +43,7 @@ export default function Map() {
 
     return (
         <>
-            <div id="map-container">
+            <div id="map-container" onClick={handleChooseLocation}>
                 <div id='map' className="relative">
                     <img
                         src={mapData.images.blank}
@@ -48,24 +51,25 @@ export default function Map() {
                         ref={imageRef}
                     />
                     {chosenPOI && (
-                        <div
-                            key={`${chosenPOI.left}+${chosenPOI.top}`}
-                            className="absolute text-white font-bold drop-shadow-[0_0_10px_black]"
-                            style={{
-                                left: `${chosenPOI.left}px`,
-                                top: `${chosenPOI.top}px`,
-                                transform: 'translate(-50%, -50%)',
-                            }}
-                        >{chosenPOI.name.toUpperCase()}
+                        <>
+                            <div
+                                key={`${chosenPOI.left}+${chosenPOI.top}`}
+                                className="absolute text-white font-bold drop-shadow-[0_0_10px_black]"
+                                style={{
+                                    left: `${chosenPOI.left}px`,
+                                    top: `${chosenPOI.top}px`,
+                                    transform: 'translate(-50%, -50%)',
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faBullseye} beat />
+                                <p className="absolute text-center">
+                                    {chosenPOI.name.toUpperCase()}
+                                </p>
                         </div>
+                        </>
                     )}
                 </div>
-            </div>
-            <div className="flex justify-center">
-                <Button chooseLocation={handleChooseLocation}>
-                    Choose!
-                </Button>
-            </div>
+            </div >
         </>
     )
 }
