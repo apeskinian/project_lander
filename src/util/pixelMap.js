@@ -1,4 +1,4 @@
-const pois = [
+const CONTROL_POIS = [
     { gameX: 6691, gameY: -46932, pixelX: 1050, pixelY: 730 },
     { gameX: 15134, gameY: 80343, pixelX: 1058, pixelY: 1505 },
     { gameX: -57184, gameY: 77601, pixelX: 580, pixelY: 1514 },
@@ -18,9 +18,9 @@ const pois = [
     { gameX: -79387, gameY: -20064, pixelX: 434, pixelY: 880 }
 ]
 
-function fitAffineModel(pois, targetKey) {
-    const A = pois.map(p => [p.gameX, p.gameY, 1]);
-    const b = pois.map(p => p[targetKey]);
+function fitAffineModel(CONTROL_POIS, targetKey) {
+    const A = CONTROL_POIS.map(p => [p.gameX, p.gameY, 1]);
+    const b = CONTROL_POIS.map(p => p[targetKey]);
 
     // Solve using normal equations: (AᵀA)⁻¹Aᵀb
     const AT = math.transpose(A);
@@ -34,11 +34,14 @@ function fitAffineModel(pois, targetKey) {
 import { create, all } from 'mathjs';
 const math = create(all);
 
-const pixelXFunc = fitAffineModel(pois, 'pixelX');
-const pixelYFunc = fitAffineModel(pois, 'pixelY');
+const pixelXFunc = fitAffineModel(CONTROL_POIS, 'pixelX');
+const pixelYFunc = fitAffineModel(CONTROL_POIS, 'pixelY');
 
-export function gameToPixel(x, y) {
-    const px = Math.round(pixelXFunc(x, y));
-    const py = Math.round(pixelYFunc(x, y));
-    return { x: px, y: py };
+export function gameToImage(x, y) {
+    const px = pixelXFunc(x, y);
+    const py = pixelYFunc(x, y);
+    return {
+        x: px / 2048,
+        y: py / 2048
+    };
 }

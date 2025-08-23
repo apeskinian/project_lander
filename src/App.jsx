@@ -1,10 +1,12 @@
 import './App.css'
-import MapViewer from './components/FortniteMap.jsx'
+import Header from './components/Header.jsx'
+import Map from './components/Map.jsx'
 
 function App() {
   return (
     <>
-      <MapViewer />
+      <Header />
+      <Map />
     </>
   )
 }
