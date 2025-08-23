@@ -33,4 +33,6 @@ h2 {
 
 #chosen-poi {
     font-family: 'Fjalla One', sans-serif;
+    padding: 2px;
+    border-radius: 2px;
 }
