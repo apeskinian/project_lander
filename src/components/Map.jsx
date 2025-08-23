@@ -1,12 +1,12 @@
 import { useMapData } from "../util/useMapData"
 import { gameToImage } from "../util/pixelMap";
 import { useEffect, useRef, useState } from "react";
-import Button from "./Button";
 import { faBullseye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { usePOI } from "../context/POIContext";
 
 export default function Map() {
+    const { useFullPOIS } = usePOI();
     const imageRef = useRef(null);
     const [chosenPOI, setChosenPOI] = useState()
     const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
@@ -27,7 +27,7 @@ export default function Map() {
     if (error) return <p>Error loading map: {error.message}</p>;
     if (!mapData) return <p>No map data available.</p>
 
-    const options = mapData.pois;
+    const options = useFullPOIS ? mapData.pois : mapData.pois.filter(poi => poi.id.startsWith('Athena.Location.POI'));
 
     function handleChooseLocation() {
         const pickedPOI = options[Math.floor(Math.random() * options.length)];
@@ -43,8 +43,8 @@ export default function Map() {
 
     return (
         <>
-            <div id="map-container" onClick={handleChooseLocation}>
-                <div id='map' className="relative">
+            <div id="map-container" className="flex-grow" onClick={handleChooseLocation}>
+                <div id='map' className="relative text-center">
                     <img
                         src={mapData.images.blank}
                         alt='Fortnite POIs map'
@@ -54,21 +54,27 @@ export default function Map() {
                         <>
                             <div
                                 key={`${chosenPOI.left}+${chosenPOI.top}`}
-                                className="absolute text-white font-bold drop-shadow-[0_0_10px_black]"
+                                className="absolute text-white flex flex-col items-center whitespace-nowrap"
                                 style={{
                                     left: `${chosenPOI.left}px`,
                                     top: `${chosenPOI.top}px`,
                                     transform: 'translate(-50%, -50%)',
                                 }}
                             >
-                                <FontAwesomeIcon icon={faBullseye} beat />
-                                <p className="absolute text-center">
-                                    {chosenPOI.name.toUpperCase()}
-                                </p>
-                        </div>
+                                <FontAwesomeIcon
+                                    className="text-2xl md:text-3xl lg:text-4xl"
+                                    icon={faBullseye}
+                                    beat
+                                />
+                            </div>
                         </>
                     )}
                 </div>
+                {chosenPOI && (
+                    <p className="absolute mt-3 text-2xl text-white">
+                        {chosenPOI.name.toUpperCase()}
+                    </p>
+                )}
             </div >
         </>
     )
