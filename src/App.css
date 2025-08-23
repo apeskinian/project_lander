@@ -22,7 +22,7 @@ h2 {
     font-family: 'Fira Sans', sans-serif;
     font-weight: 300;
     font-size: 1.8rem;
-    cursor: default;
+    cursor: pointer;
 }
 
 #map-container {
@@ -35,4 +35,15 @@ h2 {
     font-family: 'Fjalla One', sans-serif;
     padding: 2px;
     border-radius: 2px;
+}
+
+#poi-toggle {
+    background-color: white;
+    color: black;
+}
+
+#toggler {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
 }

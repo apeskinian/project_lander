@@ -13,9 +13,10 @@ export default function Header() {
                     <h2 onClick={triggerReset}>lander</h2>
                 </div>
                 <div className="flex items-center gap-3">
-                    <p>{useFullPOIS ? 'All POIs' : 'Main POIs'}</p>
+                    <p id="toggler">{useFullPOIS ? 'All POIs' : 'Main POIs'}</p>
                     <input
-                        className="toggle bg-indigo-500 text-indigo-900 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800"
+                        id="poi-toggle"
+                        className="toggle"
                         type="checkbox"
                         checked={useFullPOIS}
                         onChange={() => setUseFullPOIS(prev => !prev)}
