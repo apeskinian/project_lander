@@ -54,7 +54,7 @@ export default function Map() {
                         <>
                             <div
                                 key={`${chosenPOI.left}+${chosenPOI.top}`}
-                                className="absolute text-white flex flex-col items-center whitespace-nowrap"
+                                className="absolute text-amber-300 flex flex-col items-center whitespace-nowrap"
                                 style={{
                                     left: `${chosenPOI.left}px`,
                                     top: `${chosenPOI.top}px`,
@@ -62,7 +62,7 @@ export default function Map() {
                                 }}
                             >
                                 <FontAwesomeIcon
-                                    className="text-2xl md:text-3xl lg:text-4xl"
+                                    className="text-2xl md:text-3xl lg:text-4xl drop-shadow-[0_0_4px_black]"
                                     icon={faBullseye}
                                     beat
                                 />
