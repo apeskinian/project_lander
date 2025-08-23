@@ -1,7 +1,7 @@
 import { usePOI } from "../context/POIContext"
 
 export default function Header() {
-    const { useFullPOIS, setUseFullPOIS } = usePOI();
+    const { useFullPOIS, setUseFullPOIS, triggerReset } = usePOI();
 
     return (
         <>
@@ -10,7 +10,7 @@ export default function Header() {
                     <h1 id="header">
                         <a href="http://www.apeskinian.com" target="_blank">apeskinian|</a>
                     </h1>
-                    <h2>lander</h2>
+                    <h2 onClick={triggerReset}>lander</h2>
                 </div>
                 <div className="flex items-center gap-3">
                     <p>{useFullPOIS ? 'All POIs' : 'Main POIs'}</p>

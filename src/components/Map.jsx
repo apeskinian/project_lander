@@ -6,16 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { usePOI } from "../context/POIContext";
 
 export default function Map() {
-    const { useFullPOIS } = usePOI();
+    const { useFullPOIS, resetTimestamp, triggerReset } = usePOI();
     const imageRef = useRef(null);
-    const [ chosenPOI, setChosenPOI ] = useState()
-    const [ imageSize, setImageSize ] = useState({ width: 2048, height: 2048 });
+    const [chosenPOI, setChosenPOI] = useState()
+    const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
     const { mapData, loading, error } = useMapData();
-    const [ showLabel, setShowLabel ] = useState(false);
-    const [ markerVisible, setMarkerVisible ] = useState(true);
-    const [ markerSize, setMarkerSize ] = useState('2rem');
+    const [showLabel, setShowLabel] = useState(false);
+    const [markerVisible, setMarkerVisible] = useState(true);
+    const [markerSize, setMarkerSize] = useState('2rem');
     const zoomRef = useRef(null);
-    const [ zoomTransform, setZoomTransform ] = useState('scale(1)');
+    const [zoomTransform, setZoomTransform] = useState('scale(1)');
 
     useEffect(() => {
         if (!mapData?.images?.blank) return;
@@ -30,8 +30,10 @@ export default function Map() {
 
     useEffect(() => {
         zoomOutReset();
-        setChosenPOI(null);
-    }, [useFullPOIS]);
+        setTimeout(() => {
+            setChosenPOI(null);
+        }, 2000);
+    }, [useFullPOIS, resetTimestamp]);
 
     if (loading) return <p>Loading map...</p>;
     if (error) return <p>Error loading map: {error.message}</p>;
