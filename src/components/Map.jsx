@@ -1,9 +1,12 @@
 import { useMapData } from "../util/useMapData"
 import { gameToImage } from "../util/pixelMap";
 import { useEffect, useRef, useState } from "react";
+import Button from "./Button";
+import { pickRandom, random } from "mathjs";
 
 export default function Map() {
     const imageRef = useRef(null);
+    const [chosenPOI, setChosenPOI] = useState()
     const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
     const { mapData, loading, error } = useMapData();
 
@@ -23,34 +26,46 @@ export default function Map() {
 
     const options = mapData.pois;
 
+    function handleChooseLocation() {
+        const pickedPOI = options[Math.floor(Math.random() * options.length)];
+        const { x, y } = gameToImage(pickedPOI.location.x, pickedPOI.location.y);
+        const left = x * imageSize.width;
+        const top = y * imageSize.height;
+        setChosenPOI({
+            name: pickedPOI.name,
+            left: left,
+            top: top
+        })
+    }
+
     return (
         <>
-        <div id="map-container">
-            <div id='map' className="relative">
-                <img
-                    src={mapData.images.blank}
-                    alt='Fortnite POIs map'
-                    ref={imageRef}
-                />
-                {options.map(poi => {
-                    const { x, y } = gameToImage(poi.location.x, poi.location.y);
-                    const left = x * imageSize.width;
-                    const top = y * imageSize.height;
-                    return (
+            <div id="map-container">
+                <div id='map' className="relative">
+                    <img
+                        src={mapData.images.blank}
+                        alt='Fortnite POIs map'
+                        ref={imageRef}
+                    />
+                    {chosenPOI && (
                         <div
-                            key={`${poi.location.x}+${poi.location.y}`}
+                            key={`${chosenPOI.left}+${chosenPOI.top}`}
                             className="absolute text-white font-bold drop-shadow-[0_0_10px_black]"
                             style={{
-                                left: `${left}px`,
-                                top: `${top}px`,
+                                left: `${chosenPOI.left}px`,
+                                top: `${chosenPOI.top}px`,
                                 transform: 'translate(-50%, -50%)',
                             }}
-                        >{poi.name.toUpperCase()}
+                        >{chosenPOI.name.toUpperCase()}
                         </div>
-                    )
-                })}
+                    )}
+                </div>
             </div>
-        </div>
+            <div className="flex justify-center">
+                <Button chooseLocation={handleChooseLocation}>
+                    Choose!
+                </Button>
+            </div>
         </>
     )
 }
