@@ -1,3 +1,13 @@
+/*
+* converts Fortnite game coordinates to image pixel coordinates
+* using a manually calibrated affine transformation model
+* 
+* CONTROL_POIS contains reference points: known game coordinates
+* and their corresponding pixel positions on a 2048x2048 map image
+*/
+import { create, all } from 'mathjs';
+
+// manually extrapolated coords from image
 const CONTROL_POIS = [
     { gameX: 6691, gameY: -46932, pixelX: 1050, pixelY: 730 },
     { gameX: 15134, gameY: 80343, pixelX: 1058, pixelY: 1505 },
@@ -18,28 +28,36 @@ const CONTROL_POIS = [
     { gameX: -79387, gameY: -20064, pixelX: 434, pixelY: 880 }
 ]
 
+/*
+* fits an affine transformation model to convert game coordinates
+* to pixel coordinates (either X or Y) using least squares
+*/ 
 function fitAffineModel(CONTROL_POIS, targetKey) {
+    // construct matrix A with [gameX, gameY, 1] for each point
     const A = CONTROL_POIS.map(p => [p.gameX, p.gameY, 1]);
+    // construct vector b with either pixelX or pixelY values
     const b = CONTROL_POIS.map(p => p[targetKey]);
-
-    // Solve using normal equations: (AᵀA)⁻¹Aᵀb
+    // solve using normal equations: (AᵀA)⁻¹Aᵀb
     const AT = math.transpose(A);
     const ATA = math.multiply(AT, A);
     const ATb = math.multiply(AT, b);
     const coeffs = math.lusolve(ATA, ATb).flat();
-
+    // return a function that applies the affine transformation
     return (x, y) => coeffs[0] * x + coeffs[1] * y + coeffs[2];
 }
-
-import { create, all } from 'mathjs';
+// initialize math.js for matrix operations
 const math = create(all);
-
+// generate transformation functions for X and Y pixel coordinates
 const pixelXFunc = fitAffineModel(CONTROL_POIS, 'pixelX');
 const pixelYFunc = fitAffineModel(CONTROL_POIS, 'pixelY');
 
+/*
+* converts game coordinates to normalized image coordinates (0–1 range)
+*/
 export function gameToImage(x, y) {
     const px = pixelXFunc(x, y);
     const py = pixelYFunc(x, y);
+    // normalize to 0–1 range based on 2048px image size
     return {
         x: px / 2048,
         y: py / 2048
