@@ -1,12 +1,22 @@
-# React + Vite
+# [a|lander](https://lander.apeskinian.com)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/t/apeskinian/project_lander)](https://www.github.com/apeskinian/project_lander/commits/main)
+[![GitHub last commit](https://img.shields.io/github/last-commit/apeskinian/project_lander)](https://www.github.com/apeskinian/project_lander/commits/main)
+[![GitHub repo size](https://img.shields.io/github/repo-size/apeskinian/project_lander)](https://www.github.com/apeskinian/project_lander)
 
-Currently, two official plugins are available:
+## A simple and elegant landing zone picker for your next Fortnite Battle Royale!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tired of the same drop spots? Debating with your squad about where to land? Let a|lander take the pressure off.
 
-## Expanding the ESLint configuration
+a|lander is your intuitive, map-driven companion for Fortnite. Designed to answer the age-old question: “Where are we landing?” With a single tap, it randomly selects a point of interest (POI) from the current map and zooms in to highlight the spot. Whether you’re looking to shake up your routine or explore hidden corners you’ve never visited, a|lander makes every exciting.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Choose between:
+
+•  All available POIs and named locations for full exploration.
+•  Main POIs only for a more focused experience.
+
+No more indecision. No more arguments. Just a touch of fate guiding your next landing zone.
+
+![screenshot](documentation/lander-mockup.png)
+
+source: [Am I Responsive Multi Device Website Mockup Generator](https://ui.dev/amiresponsive?url=https://lander.apeskinian.com/)
