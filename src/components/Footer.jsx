@@ -3,13 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Footer() {
     return (
-        <footer className="p-3 flex justify-center gap-3 text-4xl text-gray-500">
-            <a href="https://www.linkedin.com/in/apeskinian/" target="_blank">
-                <FontAwesomeIcon icon={faLinkedin} />
-            </a>
-            <a href="https://github.com/apeskinian" target="_blank">
-                <FontAwesomeIcon icon={faGithub} />
-            </a>
+        <footer className="p-3 flex justify-between items-center text-gray-500">
+            <div>
+                <p id='apeskinian'><a href="http://www.apeskinian.com" target="_blank">apeskinian|</a></p>
+            </div>
+            <div className='flex gap-1 text-3xl'>
+                <a href="https://www.linkedin.com/in/apeskinian/" target="_blank">
+                    <FontAwesomeIcon icon={faLinkedin} />
+                </a>
+                <a href="https://github.com/apeskinian" target="_blank">
+                    <FontAwesomeIcon icon={faGithub} />
+                </a>
+            </div>
         </footer>
     )
 }
