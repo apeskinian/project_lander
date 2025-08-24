@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { usePOI } from "../context/POIContext";
 
 export default function Map() {
-    const { useFullPOIS, resetTimestamp, triggerReset } = usePOI();
+    const { useFullPOIS, resetTimestamp } = usePOI();
     const imageRef = useRef(null);
     const [chosenPOI, setChosenPOI] = useState()
     const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
@@ -32,9 +32,27 @@ export default function Map() {
         zoomOutReset();
     }, [useFullPOIS, resetTimestamp]);
 
-    if (loading) return <p>Loading map...</p>;
-    if (error) return <p>Error loading map: {error.message}</p>;
-    if (!mapData) return <p>No map data available.</p>
+    if (loading || error || !mapData) return (
+        <main>
+            {loading && !mapData && (
+                <div className="message-block">
+                    <p>Loading map data...</p>
+                </div>
+            )}
+            {error && (
+                <div className="message-block">
+                    <p className="mb-3">Error loading map: <strong>{error.message}</strong></p>
+                    <p>Please try reloading the page, if the error persists, please contact me.</p>
+                </div>
+            )}
+            {!mapData && !loading && !error && (
+                <div className="message-block">
+                    <p className="mb-3">No map data available.</p>
+                    <p>Please try reloading the page, if this keeps happening, please contact me.</p>
+                </div>
+            )}
+        </main>
+    )
 
     const options = useFullPOIS ? mapData.pois : mapData.pois.filter(poi => poi.id.startsWith('Athena.Location.POI'));
 
@@ -89,7 +107,7 @@ export default function Map() {
 
     return (
         <>
-            <main onClick={handleChooseLocation} className="bg-[#093576]">
+            <main onClick={handleChooseLocation}>
                 <div id='map' className="relative">
                     <div
                         ref={zoomRef}

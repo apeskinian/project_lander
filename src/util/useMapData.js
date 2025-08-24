@@ -9,6 +9,7 @@ export function useMapData() {
 
     useEffect(() => {
         let isMounted = true;
+        setLoading(true);
 
         async function fetchMapData() {
             try {

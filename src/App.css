@@ -25,6 +25,7 @@ main {
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
+    background-color: #093576;
 }
 
 img {
@@ -59,4 +60,13 @@ h2 {
     font-family: 'Fira Sans', sans-serif;
     font-weight: 300;
     font-size: 1.2rem;
+}
+
+.message-block {
+    margin: 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
