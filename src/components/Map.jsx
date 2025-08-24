@@ -13,14 +13,18 @@ export default function Map() {
     const { mapData, loading, error } = useMapData();
     // refs
     const imageRef = useRef(null);
+    const isChoosing = useRef(false);
     const zoomRef = useRef(null);
     // state
-    const [ chosenPOI, setChosenPOI ] = useState()
-    const [ imageSize, setImageSize ] = useState({ width: 2048, height: 2048 });
-    const [ markerVisible, setMarkerVisible ] = useState(true);
-    const [ markerSize, setMarkerSize ] = useState('2rem');
-    const [ showLabel, setShowLabel ] = useState(false);
-    const [ zoomTransform, setZoomTransform ] = useState('scale(1)');
+    const [chosenPOI, setChosenPOI] = useState()
+    const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
+    const [markerVisible, setMarkerVisible] = useState(true);
+    const [markerSize, setMarkerSize] = useState('2rem');
+    const [offsetX, setOffsetX] = useState(0);
+    const [offsetY, setOffsetY] = useState(0);
+    const [showLabel, setShowLabel] = useState(false);
+    const [zoomLevel, setZoomLevel] = useState(1);
+    const [zoomTransform, setZoomTransform] = useState('scale(1)');
 
     /*
      * sets an observer on the image and clears the current POI state if the
@@ -77,9 +81,9 @@ export default function Map() {
 
     // zoom the map out and reset
     function zoomOutReset() {
-        setZoomTransform('scale(1) translate(0px, 0px)');
         setShowLabel(false);
         setMarkerVisible(false);
+        setZoomTransform('scale(1) translate(0px, 0px)');
     }
 
     /*
@@ -100,25 +104,31 @@ export default function Map() {
         setMarkerVisible(true);
         // zooms in to chosen POI, marker size is reduced
         setTimeout(() => {
-            const zoomLevel = 5;
+            const zoom = 5;
             const container = zoomRef.current?.parentElement;
             const containerWidth = container?.offsetWidth || 0;
             const containerHeight = container?.offsetHeight || 0;
-            const scaledLeft = left * zoomLevel;
-            const scaledTop = top * zoomLevel;
+            const scaledLeft = left * zoom;
+            const scaledTop = top * zoom;
             const offsetX = containerWidth / 2 - scaledLeft;
             const offsetY = containerHeight / 2 - scaledTop;
-            setMarkerSize('0.8rem')
-            setZoomTransform(`translate(${offsetX}px, ${offsetY}px) scale(${zoomLevel})`);
+            setZoomLevel(zoom);
+            setOffsetX(offsetX);
+            setOffsetY(offsetY);
+            setMarkerSize('0.8rem');
+            setZoomTransform(`translate(${offsetX}px, ${offsetY}px) scale(${zoom})`);
         }, 500);
         // label is shown
         setTimeout(() => {
             setShowLabel(true);
-        }, 1500);
+            isChoosing.current = false;
+        }, 2100);
     }
 
     // picks new POI when map is clicked
     function handleChooseLocation() {
+        if (isChoosing.current) return;
+        isChoosing.current = true;
         if (showLabel) {
             zoomOutReset();
             setTimeout(() => {
@@ -128,11 +138,16 @@ export default function Map() {
         } else {
             pickPOI();
         }
-    }
+    };
+
+    // handles accidental double clicking which will zoom in a bit
+    function handleDoubleClick(e) {
+        e.preventDefault();
+    };
 
     return (
         <>
-            <main onClick={handleChooseLocation}>
+            <main onClick={handleChooseLocation} onDoubleClick={handleDoubleClick}>
                 <div id='map' className="relative">
                     <div
                         ref={zoomRef}
@@ -159,18 +174,28 @@ export default function Map() {
                                 <FontAwesomeIcon
                                     icon={faBullseye}
                                     style={{ fontSize: markerSize }}
-                                    className="drop-shadow-[0_0_4px_black]"
+                                    className="drop-shadow-[0_0_4px_black] transition-all duration-1000 ease-in-out"
                                     beat
                                 />
-                                <p
-                                    id="chosen-poi"
-                                    className={`bg-gray-800/30 drop-shadow-[0_0_2px_black] text-[0.3rem] absolute mt-4 text-white leading-tight ${showLabel ? 'opacity-100' : 'opacity-0'}`}
-                                >
-                                    {chosenPOI.name.toUpperCase()}
-                                </p>
                             </div>
                         )}
                     </div>
+                    {chosenPOI && (
+                        <p
+                            id="chosen-poi"
+                            className="absolute bg-gray-800/30 drop-shadow-[0_0_2px_black] text-[1.8rem] text-white leading-tight"
+                            style={{
+                                left: `${chosenPOI.left * zoomLevel + offsetX}px`,
+                                top: `${chosenPOI.top * zoomLevel + offsetY + 50}px`,
+                                transform: 'translate(-50%, 0)',
+                                pointerEvents: 'none',
+                                opacity: showLabel ? 1 : 0,
+                                transition: 'opacity 0.2s ease-in-out',
+                            }}
+                        >
+                            {chosenPOI.name.toUpperCase()}
+                        </p>
+                    )}
                 </div>
             </main >
         </>

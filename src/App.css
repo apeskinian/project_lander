@@ -7,7 +7,8 @@
     overscroll-behavior: none;
 }
 
-header, footer {
+header,
+footer {
     height: 60px;
     flex-shrink: 0;
 }
@@ -44,11 +45,10 @@ h2 {
     cursor: pointer;
 }
 
-
 #chosen-poi {
     font-family: 'Fjalla One', sans-serif;
-    padding: 2px;
-    border-radius: 2px;
+    padding: 4px;
+    border-radius: 4px;
 }
 
 #poi-toggle {
@@ -56,7 +56,8 @@ h2 {
     color: black;
 }
 
-#showing-pois, #apeskinian {
+#showing-pois,
+#apeskinian {
     font-family: 'Fira Sans', sans-serif;
     font-weight: 400;
     font-size: 1.2rem;
