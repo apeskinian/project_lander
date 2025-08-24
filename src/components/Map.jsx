@@ -159,12 +159,12 @@ export default function Map() {
                                 <FontAwesomeIcon
                                     icon={faBullseye}
                                     style={{ fontSize: markerSize }}
-                                    className="drop-shadow-[0_0_4px_black] transition-all duration-1000 ease-in-out"
+                                    className="drop-shadow-[0_0_4px_black]"
                                     beat
                                 />
                                 <p
                                     id="chosen-poi"
-                                    className={`bg-gray-800/30 drop-shadow-[0_0_2px_black] text-[0.3rem] absolute mt-4 text-white leading-tight transition-opacity duration-500 ${showLabel ? 'opacity-100' : 'opacity-0'}`}
+                                    className={`bg-gray-800/30 drop-shadow-[0_0_2px_black] text-[0.3rem] absolute mt-4 text-white leading-tight ${showLabel ? 'opacity-100' : 'opacity-0'}`}
                                 >
                                     {chosenPOI.name.toUpperCase()}
                                 </p>
