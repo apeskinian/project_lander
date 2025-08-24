@@ -15,12 +15,12 @@ export default function Map() {
     const imageRef = useRef(null);
     const zoomRef = useRef(null);
     // state
-    const [chosenPOI, setChosenPOI] = useState()
-    const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
-    const [markerVisible, setMarkerVisible] = useState(true);
-    const [markerSize, setMarkerSize] = useState('2rem');
-    const [showLabel, setShowLabel] = useState(false);
-    const [zoomTransform, setZoomTransform] = useState('scale(1)');
+    const [ chosenPOI, setChosenPOI ] = useState()
+    const [ imageSize, setImageSize ] = useState({ width: 2048, height: 2048 });
+    const [ markerVisible, setMarkerVisible ] = useState(true);
+    const [ markerSize, setMarkerSize ] = useState('2rem');
+    const [ showLabel, setShowLabel ] = useState(false);
+    const [ zoomTransform, setZoomTransform ] = useState('scale(1)');
 
     /*
      * sets an observer on the image and clears the current POI state if the
