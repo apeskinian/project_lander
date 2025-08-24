@@ -89,8 +89,8 @@ export default function Map() {
 
     return (
         <>
-            <div id="map-container" className="flex-grow" onClick={handleChooseLocation}>
-                <div id='map' className="relative overflow-hidden text-center bg-[#093576]">
+            <main onClick={handleChooseLocation} className="bg-[#093576]">
+                <div id='map' className="relative">
                     <div
                         ref={zoomRef}
                         className="transition-transform duration-2000 ease-in-out"
@@ -129,7 +129,7 @@ export default function Map() {
                         )}
                     </div>
                 </div>
-            </div >
+            </main >
         </>
     )
 }

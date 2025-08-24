@@ -7,10 +7,28 @@
     overscroll-behavior: none;
 }
 
+header, footer {
+    height: 60px;
+    flex-shrink: 0;
+}
+
 body {
     display: flex;
     flex-direction: column;
     min-height: 100dvh;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+img {
+    max-height: calc(100dvh - 120px);
 }
 
 h1 {
@@ -25,11 +43,6 @@ h2 {
     cursor: pointer;
 }
 
-#map-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 #chosen-poi {
     font-family: 'Fjalla One', sans-serif;
