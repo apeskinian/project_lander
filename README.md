@@ -64,3 +64,29 @@ The main focus of the app is the map area that shows the current Fortnite Battle
 If there are any errors in fetching the data, the map will be replaced by an information message informing the user.
 
 The bottom of the page contains a footer with another link to my [portfolio](https://www.apeskinian.com) along with links to my [LinkedIn](https://www.linkedin.com/in/apeskinian/) profile and [GitHub](https://github.com/apeskinian) profile.
+
+### Skeleton
+
+In the wire framing process I decided that the interface needed to be as simple and easy as possible. Minimal input for maximum output. A clean interface with emphasis on the map area as that is the focus of the app.
+
+A full list of [Wireframes](#wireframes) can be viewed in detail below.
+
+## Wireframes
+
+To follow best practice, wire frames were developed for mobile, tablet, and desktop sizes.
+I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
+
+### Mobile Wireframes
+| Whole Map View | Highlighted POI View |
+| --- | --- |
+| ![wireframe](documentation/wireframes/phone.png "whole map") | ![wireframe](documentation/wireframes/phone_zoomed.png "poi highlighted") |
+
+### Tablet Wireframes
+| Whole Map View | Highlighted POI View |
+| --- | --- |
+| ![wireframe](documentation/wireframes/tablet.png "whole map") | ![wireframe](documentation/wireframes/tablet_zoomed.png "poi highlighted") |
+
+### Desktop Wireframes
+| Whole Map View | Highlighted POI View |
+| --- | --- |
+| ![wireframe](documentation/wireframes/desktop.png "whole map") | ![wireframe](documentation/wireframes/desktop_zoomed.png "poi highlighted") |
