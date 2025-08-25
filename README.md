@@ -71,6 +71,67 @@ In the wire framing process I decided that the interface needed to be as simple 
 
 A full list of [Wireframes](#wireframes) can be viewed in detail below.
 
+### Surface
+
+**Visual Design Elements**
+
+- **[Colours](#colour-scheme)**: see below.
+- **[Typography](#typography)**: see below.
+
+### Colour Scheme
+
+The colour scheme for the site is a monochromatic interface combined with the full colour of the Fortnite map. A yellow marker is overlaid to highlight POIs.
+
+| Colour Reference | Usage |
+| --- | --- |
+| #FCD34D | POI Marker |
+| #093576 | Background for the map image |
+| #6a7282 | Footer text and icons |
+
+### Typography
+
+#### Fonts
+
+- [Fjalla One](https://fonts.google.com/specimen/Fjalla+One) was used for the **a|** in the header and the label for the POIs on the map.
+
+- [Fira Sans](https://fonts.google.com/specimen/Fira+Sans) was used for the **lander** in the header and all other text.
+
+#### Icons
+
+- The favicon for the site is from [SVGREPO](https://www.svgrepo.com/):
+
+    | Icon | Name |
+    | --- | --- |
+    | ![Favicon](documentation/ux/parachute-svgrepo-com.png) | [Parachute](https://www.svgrepo.com/svg/24339/parachute) |
+
+- [Font Awesome](https://fontawesome.com) icons were used across the site for various uses:
+
+    | Icon | Name | Use |
+    | --- | --- | --- |
+    | ![Bullseye](documentation/ux/bullseye-solid-full.svg) | [bullseye](https://fontawesome.com/icons/bullseye?f=classic&s=solid "font awesome link") | POI Highlight |
+    | ![LinkedIn](documentation/ux/linkedin-brands-solid-full.svg) | [linkedin](https://fontawesome.com/icons/linkedin?f=brands&s=solid "font awesome link") | LinkedIn footer link |
+    | ![GitHub](documentation/ux/github-brands-solid-full.svg) | [github](https://fontawesome.com/icons/github?f=brands&s=solid "font awesome link") | GitHub footer link |
+
+## User Stories
+
+| User | Capability | Benefit |
+| --- | --- | --- |
+| As a user | I can be given a place to land in Fortnite Battle Royale | so that I don't have to worry about choosing where to land. |
+| As a user | I can interact with the app using simple taps or clicks | so that I can quickly get a result without complex navigation.  |
+| As a user | I can easily request a new POI | so that I have a new landing site for the next Battle Royale. |
+| As a user | I can choose whether to use just the main POIs or the full set of POIs | so that I can either focus on landing in the main areas or decide to explore a little further for more challenging starts. |
+| As a user | I can toggle between POI sets easily | so that I don't have to spend too much time on preferences. |
+| As a user | I can see the chosen POI focused and zoomed in on the map | so that know exactly where to land. |
+| As a user | I can see the name of the POI | so that I know where I am landing. |
+| As a user | I can access and use the app on mobile devices | so that can us it wherever I play Fortnite. |
+| As a user | I can install the app as a PWA on my homescreen | so that it feels like a native app with fast access. |
+| As a user | I can see welcome message on first launch | so that I understand how to use the app. |
+| As a user | I can use the app without needing to sign in | so that I can jump straight into gameplay without any friction. |
+| As a user | I can rely on the app to be responsive across devices | so that I can always see the map and POI clearly no matter my device. |
+| As a user | I can use the app in landscape or portrait mode | so that it adapts to how I hold my device. |
+| As a user | I can rely that the map and POIs are up to date | so that I don't need to worry about having to input anything myself to update it. |
+
+
 ## Wireframes
 
 To follow best practice, wire frames were developed for mobile, tablet, and desktop sizes.
