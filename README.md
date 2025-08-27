@@ -151,3 +151,22 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 | Whole Map View | Highlighted POI View |
 | --- | --- |
 | ![wireframe](documentation/wireframes/desktop.png "whole map") | ![wireframe](documentation/wireframes/desktop_zoomed.png "poi highlighted") |
+
+## Features
+
+### Existing Features
+
+- ### Header
+
+    The page header contains the main title of app along with a toggle for changing the POI set that is used to generate a landing site. The title has two additional functions:
+
+    - The '**a|**' portion of the title is a link to my [portfolio](https://www.apeskinian.com) website.
+    - The '**lander**' portion of the title will reset the map when clicked. The current POI will be removed and the map will zoom out to the starting position.
+
+    ![Header](documentation/features/header.png "Header image")
+
+- ### Footer
+
+    The page footer contains a link to my [portfolio](https://www.apeskinian.com) website on the left and then links to my [LinkedIn](https://www.linkedin.com/in/apeskinian/) and [GitHub](https://github.com/apeskinian) profiles on the right by way of some FontAwesome icons.
+
+    ![Footer](documentation/features/footer.png "Footer image")
