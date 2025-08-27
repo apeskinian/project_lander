@@ -4,7 +4,7 @@ const POIContext = createContext();
 
 export function POIProvider({ children }) {
     const [ useFullPOIS, setUseFullPOIS ] = useState(true);
-    const [resetTimestamp, setResetTimestamp] = useState(Date.now());
+    const [ resetTimestamp, setResetTimestamp ] = useState(Date.now());
 
     const triggerReset = () => setResetTimestamp(Date.now());
     
