@@ -11,5 +11,10 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: true, // binds to 0.0.0.0 so other devices can access
     port: 5173, // or whatever port you prefer
-  }
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.ts',
+  },
 }))
