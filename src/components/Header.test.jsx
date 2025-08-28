@@ -11,12 +11,6 @@ let useFullPOISValue = true
 vi.mock('../context/POIContext', () => ({
     usePOI: () => ({ useFullPOIS: useFullPOISValue, setUseFullPOIS, triggerReset }),
 }))
-// factory for mock return values
-const fetchMapData = vi.fn()
-// mocking the useMapData hook
-vi.mock('../util/useMapData', () => ({
-    useMapData: () => ({ fetchMapData })
-}))
 
 describe('Header component', () => {
     // reset mock hook values to default before each test
@@ -24,7 +18,6 @@ describe('Header component', () => {
         useFullPOISValue = true
         triggerReset.mockClear()
         setUseFullPOIS.mockClear()
-        fetchMapData.mockClear()
     })
     it('renders link to portfolio site with a| part of title', () => {
         // arrange
@@ -40,7 +33,6 @@ describe('Header component', () => {
         await userEvent.click(screen.getByText('lander'));
         // assert
         expect(triggerReset).toHaveBeenCalled();
-        expect(fetchMapData).toHaveBeenCalled();
     })
     it('shows All POIs for toggle label and checkbox is checked if useFullPOIS is true', () => {
         // arrange

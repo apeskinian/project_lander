@@ -1,14 +1,7 @@
 import { usePOI } from "../context/POIContext"
-import { useMapData } from "../util/useMapData";
 
 export default function Header() {
     const { useFullPOIS, setUseFullPOIS, triggerReset } = usePOI();
-    const { fetchMapData } = useMapData();
-
-    function handleRefresh() {
-        triggerReset();
-        fetchMapData();
-    }
 
     return (
         <header className="p-3 flex items-center justify-between">
@@ -16,7 +9,7 @@ export default function Header() {
                 <h1 id="header">
                     <a href="http://www.apeskinian.com" target="_blank">a|</a>
                 </h1>
-                <h2 onClick={handleRefresh}>lander</h2>
+                <h2 onClick={triggerReset}>lander</h2>
             </div>
             <div className="flex items-center gap-3">
                 <p id="showing-pois">{useFullPOIS ? 'All POIs' : 'Main POIs'}</p>
