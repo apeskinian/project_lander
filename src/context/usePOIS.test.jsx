@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react'
 import { expect } from 'vitest'
-import { POIProvider, usePOI } from './POIContext'
+import { POIProvider, usePOI } from './usePOIS'
 import userEvent from '@testing-library/user-event';
 
 // create a test function to use the context
 function TestComponent() {
-    const { useFullPOIS, setUseFullPOIS, resetTimestamp, triggerReset } = usePOI();
+    const { showFullPOIS, setShowFullPOIS, resetTimestamp, triggerReset } = usePOI();
     return (
         <div>
-            <span data-testid='pois'>{useFullPOIS ? 'all' : 'main'}</span>
-            <button onClick={() => setUseFullPOIS(v => !v)}>toggle</button>
+            <span data-testid='pois'>{showFullPOIS ? 'all' : 'main'}</span>
+            <button onClick={() => setShowFullPOIS(v => !v)}>toggle</button>
             <span data-testid='reset'>{resetTimestamp}</span>
             <button onClick={triggerReset}>reset</button>
         </div>
@@ -17,7 +17,7 @@ function TestComponent() {
 }
 
 describe('POIContext and usePOI hook', () => {
-    it('provides default value of true for useFullPOIS' , () => {
+    it('provides default value of true for showFullPOIS' , () => {
         // arrange
         render(
             <POIProvider>

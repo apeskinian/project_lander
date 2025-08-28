@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullseye } from '@fortawesome/free-solid-svg-icons';
 
-import { usePOI } from "../context/POIContext";
-import { useMapData } from "../util/useMapData";
+import { usePOI } from "../context/usePOIS";
+import { useMapData } from "../hooks/useMapData";
 import { gameToImage } from "../util/pixelMap";
 
 export default function Map() {
     // context hooks
-    const { useFullPOIS, resetTimestamp } = usePOI();
+    const { showFullPOIS, resetTimestamp } = usePOI();
     //custom hooks
     const { mapData, loading, error } = useMapData();
     // refs
@@ -48,7 +48,7 @@ export default function Map() {
     */
     useEffect(() => {
         zoomOutReset();
-    }, [useFullPOIS, resetTimestamp]);
+    }, [showFullPOIS, resetTimestamp]);
 
     // return dynamic message
     if (loading || error || !mapData) return (
@@ -77,7 +77,7 @@ export default function Map() {
      * getting all landing zones from mapData according to current chosen
      * filter set from the toggle in the header
     */
-    const options = useFullPOIS ? mapData.pois : mapData.pois.filter(poi => poi.id.startsWith('Athena.Location.POI'));
+    const options = showFullPOIS ? mapData.pois : mapData.pois.filter(poi => poi.id.startsWith('Athena.Location.POI'));
 
     // zoom the map out and reset
     function zoomOutReset() {

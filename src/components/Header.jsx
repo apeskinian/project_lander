@@ -1,7 +1,7 @@
-import { usePOI } from "../context/POIContext"
+import { usePOI } from "../context/usePOIS"
 
 export default function Header() {
-    const { useFullPOIS, setUseFullPOIS, triggerReset } = usePOI();
+    const { showFullPOIS, setShowFullPOIS, triggerReset } = usePOI();
 
     return (
         <header className="p-3 flex items-center justify-between">
@@ -12,13 +12,13 @@ export default function Header() {
                 <h2 onClick={triggerReset}>lander</h2>
             </div>
             <div className="flex items-center gap-3">
-                <p id="showing-pois">{useFullPOIS ? 'All POIs' : 'Main POIs'}</p>
+                <p id="showing-pois">{showFullPOIS ? 'All POIs' : 'Main POIs'}</p>
                 <input
                     id="poi-toggle"
                     className="toggle"
                     type="checkbox"
-                    checked={useFullPOIS}
-                    onChange={() => setUseFullPOIS(prev => !prev)}
+                    checked={showFullPOIS}
+                    onChange={() => setShowFullPOIS(prev => !prev)}
                 />
             </div>
         </header>

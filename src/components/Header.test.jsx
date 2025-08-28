@@ -5,19 +5,19 @@ import Header from './Header'
 
 // factory for mock return values
 const triggerReset = vi.fn()
-const setUseFullPOIS = vi.fn()
-let useFullPOISValue = true
+const setShowFullPOIS = vi.fn()
+let showFullPOISValue = true
 // mocking the usePOI hook
 vi.mock('../context/POIContext', () => ({
-    usePOI: () => ({ useFullPOIS: useFullPOISValue, setUseFullPOIS, triggerReset }),
+    usePOI: () => ({ showFullPOIS: showFullPOISValue, setShowFullPOIS, triggerReset }),
 }))
 
 describe('Header component', () => {
     // reset mock hook values to default before each test
     beforeEach(() => {
-        useFullPOISValue = true
+        showFullPOISValue = true
         triggerReset.mockClear()
-        setUseFullPOIS.mockClear()
+        setShowFullPOIS.mockClear()
     })
     it('renders link to portfolio site with a| part of title', () => {
         // arrange
@@ -34,7 +34,7 @@ describe('Header component', () => {
         // assert
         expect(triggerReset).toHaveBeenCalled();
     })
-    it('shows All POIs for toggle label and checkbox is checked if useFullPOIS is true', () => {
+    it('shows All POIs for toggle label and checkbox is checked if showFullPOIS is true', () => {
         // arrange
         render(<Header />);
         // assert
@@ -43,9 +43,9 @@ describe('Header component', () => {
         expect(toggleLabel).toBeInTheDocument();
         expect(checkboxElement).toBeChecked();
     })
-    it('shows Main POIs for toggle label and checkbox is not checked if useFullPOIS is false', () => {
+    it('shows Main POIs for toggle label and checkbox is not checked if showFullPOIS is false', () => {
         // arrange
-        useFullPOISValue = false
+        showFullPOISValue = false
         render(<Header />);
         // assert
         const toggleLabel = screen.getByText('Main POIs');
@@ -59,6 +59,6 @@ describe('Header component', () => {
         // act
         await userEvent.click(screen.getByRole('checkbox'))
         // assert
-        expect(setUseFullPOIS).toHaveBeenCalled();
+        expect(setShowFullPOIS).toHaveBeenCalled();
     })
 })

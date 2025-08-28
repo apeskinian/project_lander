@@ -3,13 +3,13 @@ import { createContext, useContext, useState } from "react";
 const POIContext = createContext();
 
 export function POIProvider({ children }) {
-    const [ useFullPOIS, setUseFullPOIS ] = useState(true);
+    const [ showFullPOIS, setShowFullPOIS ] = useState(true);
     const [ resetTimestamp, setResetTimestamp ] = useState(Date.now());
 
     const triggerReset = () => setResetTimestamp(Date.now());
     
     return (
-        <POIContext.Provider value={{ useFullPOIS, setUseFullPOIS, resetTimestamp, triggerReset }}>
+        <POIContext.Provider value={{ showFullPOIS, setShowFullPOIS, resetTimestamp, triggerReset }}>
             {children}
         </POIContext.Provider>
     );
