@@ -1,4 +1,4 @@
-import { getByTestId, getByText, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { expect } from 'vitest'
 import { POIProvider, usePOI } from './POIContext'
 import userEvent from '@testing-library/user-event';
