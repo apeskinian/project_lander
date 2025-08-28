@@ -2,40 +2,33 @@
  * custom hook to fetch the map data from fortnite-api.com
  * returns the mapData, loading status and any errors.
 */
-import { useEffect, useState } from "react";
+import { cache, useCallback, useEffect, useState } from "react";
 
 export function useMapData() {
     // setting states
-    const [ mapData, setMapData ] = useState(null);
-    const [ loading, setLoading ] = useState(null);
-    const [ error, setError ] = useState(null);
-    // getting data from fortnite-api
-    useEffect(() => {
-        let isMounted = true;
+    const [mapData, setMapData] = useState(null);
+    const [loading, setLoading] = useState(null);
+    const [error, setError] = useState(null);
+
+    const fetchMapData = useCallback(async () => {
         setLoading(true);
-        // fetch data
-        async function fetchMapData() {
-            try {
-                const response = await fetch('https://fortnite-api.com/v1/map');
-                const json = await response.json();
-                if (isMounted) {
-                    setMapData(json?.data || null);
-                    setLoading(false);
-                }
-            } catch (err) {
-                if (isMounted) {
-                    setError(err);
-                    setLoading(false);
-                }
-            }
+        try {
+            const response = await fetch('https://fortnite-api.com/v1/map', {
+                cache: 'no-store'
+            });
+            const json = await response.json();
+            setMapData(json?.data || null);
+            console.log('fetched new map')
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
         }
+    }, []);
 
-        fetchMapData();
-        // cleanup
-        return () => {
-            isMounted = false;
-        }
-    }, [])
+useEffect(() => {
+    fetchMapData();
+}, [fetchMapData])
 
-    return { mapData, loading, error }
+return { mapData, loading, error, fetchMapData }
 }

@@ -9,11 +9,13 @@ const setUseFullPOIS = vi.fn()
 let useFullPOISValue = true
 // mocking the usePOI hook
 vi.mock('../context/POIContext', () => ({
-    usePOI: () => ({
-        useFullPOIS: useFullPOISValue,
-        setUseFullPOIS,
-        triggerReset,
-    }),
+    usePOI: () => ({ useFullPOIS: useFullPOISValue, setUseFullPOIS, triggerReset }),
+}))
+// factory for mock return values
+const fetchMapData = vi.fn()
+// mocking the useMapData hook
+vi.mock('../util/useMapData', () => ({
+    useMapData: () => ({ fetchMapData })
 }))
 
 describe('Header component', () => {
@@ -22,6 +24,7 @@ describe('Header component', () => {
         useFullPOISValue = true
         triggerReset.mockClear()
         setUseFullPOIS.mockClear()
+        fetchMapData.mockClear()
     })
     it('renders link to portfolio site with a| part of title', () => {
         // arrange
@@ -30,13 +33,14 @@ describe('Header component', () => {
         const link = screen.getByRole('link', { name: 'a|' })
         expect(link).toHaveAttribute('href', 'http://www.apeskinian.com')
     })
-    it('resets the map when the lander part of the title is clicked', async () => {
+    it('resets the map and refreshes data when the lander part of the title is clicked', async () => {
         // arrange
         render(<Header />);
         // act
         await userEvent.click(screen.getByText('lander'));
         // assert
         expect(triggerReset).toHaveBeenCalled();
+        expect(fetchMapData).toHaveBeenCalled();
     })
     it('shows All POIs for toggle label and checkbox is checked if useFullPOIS is true', () => {
         // arrange
