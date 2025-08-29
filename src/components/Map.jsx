@@ -13,19 +13,14 @@ export default function Map() {
     const { mapData, loading, error } = useMapData();
     // refs
     const imageRef = useRef(null);
-    const isChoosing = useRef(false);
     const zoomRef = useRef(null);
     // state
     const [chosenPOI, setChosenPOI] = useState()
+    const [poiMarker, setPoiMarker] = useState({ isChoosing: false, targetVisible: false, labelVisible: false, size: '2rem' })
     const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
-    const [markerVisible, setMarkerVisible] = useState(true);
-    const [markerSize, setMarkerSize] = useState('2rem');
-    const [offsetX, setOffsetX] = useState(0);
-    const [offsetY, setOffsetY] = useState(0);
-    const [showLabel, setShowLabel] = useState(false);
-    const [zoomLevel, setZoomLevel] = useState(1);
-    const [zoomTransform, setZoomTransform] = useState('scale(1)');
+    const [zoomState, setZoomState] = useState({level: 1, offsetX: 0, offsetY: 0})
 
+    const transform = `translate(${zoomState.offsetX}px, ${zoomState.offsetY}px) scale(${zoomState.level})`
     /*
      * sets an observer on the image and clears the current POI state if the
      * image changes size, so when a window is resized the POI is cleared,
@@ -37,6 +32,7 @@ export default function Map() {
             const { width, height } = entry.contentRect;
             setImageSize({ width, height });
             setChosenPOI(null)
+            zoomOutReset()
         });
         if (imageRef.current) observer.observe(imageRef.current);
         return () => observer.disconnect();
@@ -72,9 +68,10 @@ export default function Map() {
 
     // zoom the map out and reset
     function zoomOutReset() {
-        setShowLabel(false);
-        setMarkerVisible(false);
-        setZoomTransform('scale(1) translate(0px, 0px)');
+        setPoiMarker(prevState => ({...prevState, targetVisible: false, labelVisible: false}))
+        setTimeout(() => {
+            setZoomState({level: 1, offsetX: 0, offsetY: 0})
+        }, 200)
     }
 
     /*
@@ -87,10 +84,9 @@ export default function Map() {
         const pickedPOI = options[Math.floor(Math.random() * options.length)];
         // get x and y pixel coords from game coords
         const { left, top } = gameToImage(pickedPOI.location.x, pickedPOI.location.y, imageSize);
-        // set chosen POI
+        // set chosen POI and show marker
         setChosenPOI({ name: pickedPOI.name, left, top });
-        setMarkerSize('2rem')
-        setMarkerVisible(true);
+        setPoiMarker(prevState => ({...prevState, targetVisible: true, size:'2rem'}))
         // zooms in to chosen POI, marker size is reduced
         setTimeout(() => {
             const zoom = 5;
@@ -101,31 +97,25 @@ export default function Map() {
             const scaledTop = top * zoom;
             const offsetX = containerWidth / 2 - scaledLeft;
             const offsetY = containerHeight / 2 - scaledTop;
-            setZoomLevel(zoom);
-            setOffsetX(offsetX);
-            setOffsetY(offsetY);
-            setMarkerSize('0.8rem');
-            setZoomTransform(`translate(${offsetX}px, ${offsetY}px) scale(${zoom})`);
+            setZoomState({level: zoom, offsetX, offsetY})
+            setPoiMarker(prevState => ({...prevState, size: '0.8rem'}));
         }, 750);
-        // label is shown
+        // show label
         setTimeout(() => {
-            setShowLabel(true);
-            isChoosing.current = false;
-        }, 2100);
+            setPoiMarker(prevState => ({...prevState, isChoosing: false, labelVisible: true}))
+        }, 2200);
     }
 
     // picks new POI when map is clicked
     function handleChooseLocation() {
-        // first check if the map has been clicked recently and is currently
-        // picking a new location
-        if (isChoosing.current) return;
-        // set isChoosing to true, multiple clicks will not queue now
-        isChoosing.current = true;
-        // check if a POI was currently being shown
-        if (showLabel) {
+        // check to see if a POI is currently being picked
+        if (poiMarker.isChoosing) return;
+        // set isChoosing to true to stop queuing
+        setPoiMarker(prev => ({ ...prev, isChoosing: true }));
+        // check if a POI was currently being shown if so reset map view before picking new POI
+        if (poiMarker.labelVisible) {
             zoomOutReset();
             setTimeout(() => {
-                setChosenPOI(null);
                 pickPOI();
             }, 2000);
         } else {
@@ -142,19 +132,31 @@ export default function Map() {
         <>
             <main onClick={handleChooseLocation} onDoubleClick={handleDoubleClick}>
                 <div id="map-container" className="relative">
-                    <div id='map' ref={zoomRef} style={{ transform: zoomTransform }}>
-                        <img src={mapData.images.blank} alt='Fortnite POIs map' ref={imageRef}/>
+                    <div id='map' ref={zoomRef} style={{ transform }}>
+                        <img src={mapData.images.blank} alt='Fortnite POIs map' ref={imageRef} />
                         {chosenPOI && (
-                            <div id="poi-marker" style={{ left: `${chosenPOI.left}px`, top: `${chosenPOI.top}px`, opacity: markerVisible ? 1 : 0 }}>
+                            <div
+                                id="poi-marker"
+                                style={{
+                                    left: `${chosenPOI.left}px`,
+                                    top: `${chosenPOI.top}px`,
+                                    opacity: poiMarker.targetVisible ? 1 : 0
+                                }}>
                                 <FontAwesomeIcon
+                                    icon={faBullseye} style={{ fontSize: poiMarker.size }} beat
                                     className="drop-shadow-[0_0_4px_black] transition-all duration-1000 ease-in-out"
-                                    icon={faBullseye} style={{ fontSize: markerSize }} beat
                                 />
                             </div>
                         )}
                     </div>
                     {chosenPOI && (
-                        <p id="poi-label" style={{ left: `${chosenPOI.left * zoomLevel + offsetX}px`, top: `${chosenPOI.top * zoomLevel + offsetY + 50}px`, opacity: showLabel ? 1 : 0 }}>
+                        <p
+                            id="poi-label"
+                            style={{
+                                left: `${chosenPOI.left * zoomState.level + zoomState.offsetX}px`,
+                                top: `${chosenPOI.top * zoomState.level + zoomState.offsetY}px`,
+                                opacity: poiMarker.labelVisible ? 1 : 0
+                            }}>
                             {chosenPOI.name.toUpperCase()}
                         </p>
                     )}

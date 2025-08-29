@@ -65,6 +65,7 @@ h2 {
     text-align: center;
     font-size: 1.8rem;
     color: white;
+    margin-top: 50px;
     transition: opacity 0.2s ease-in-out;
     transform: translate(-50%, 0);
 }
@@ -82,7 +83,7 @@ h2 {
 }
 
 #map {
-    transition: transform 2000ms ease-in-out;
+    transition: transform 2000ms;
     transform-origin: top left;
 }
 
