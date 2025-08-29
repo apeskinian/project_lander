@@ -22,9 +22,7 @@ let mapDataValue = {
     images: { blank: 'test-image-url' },
     pois: [
         { id: 'Athena.Location.POI.Test1', name: 'Test POI', location: { x: 10, y: 20 } },
-        { id: 'Athena.Location.POI.Test2', name: 'Another POI', location: { x: 30, y: 40 } },
-        { id: 'Test3', name: 'And Another POI', location: { x: 40, y: 50 } },
-        { id: 'Test4', name: 'Yet Another POI', location: { x: 50, y: 60 } }
+        { id: 'Test2', name: 'And Another POI', location: { x: 40, y: 50 } },
     ]
 };
 let loading = null
@@ -47,6 +45,18 @@ class ResizeObserver {
 global.ResizeObserver = ResizeObserver;
 
 describe('Map component', () => {
+    beforeEach(() => {
+        mapDataValue = {
+            images: { blank: 'test-image-url' },
+            pois: [
+                { id: 'Athena.Location.POI.Test1', name: 'Test POI', location: { x: 10, y: 20 } },
+                { id: 'Test2', name: 'And Another POI', location: { x: 40, y: 50 } },
+            ]
+        };
+        loading = null;
+        error = null;
+        showFullPOISValue = true;
+    });
     it('renders a main element', () => {
         // arrange
         render(<Map />);
@@ -87,14 +97,34 @@ describe('Map component', () => {
     })
     it('renders the map image when map data is loaded successfully', () => {
         // arrange
-        mapDataValue = {
-            images: { blank: 'test-image-url' },
-        };
-        loading = false
-        error = null
         render(<Map />);
         // assert
         const mapElement = screen.getByAltText('Fortnite POIs map');
         expect(mapElement).toBeInTheDocument();
     })
+    it('filters POIs when showFullPOIS is false', () => {
+        // arrange
+        showFullPOISValue = false;
+        render(<Map />);
+        // act
+        userEvent.click(screen.getByRole('main'));
+        // assert
+        const label = screen.findByText(/TEST POI/i);
+        expect(label).resolves.toBeInTheDocument();
+    });
+    it('does not filter POIs when showFullPOIS is true', () => {
+        // arrange
+        mapDataValue = {
+            images: { blank: 'test-image-url' },
+            pois: [
+                { id: 'Test2', name: 'And Another POI', location: { x: 40, y: 50 } },
+            ]
+        };
+        render(<Map />);
+        // act
+        userEvent.click(screen.getByRole('main'));
+        // assert
+        const label = screen.findByText(/AND ANOTHER POI/i);
+        expect(label).resolves.toBeInTheDocument();
+    });
 })
