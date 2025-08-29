@@ -5,7 +5,7 @@
 * CONTROL_POIS contains reference points: known game coordinates
 * and their corresponding pixel positions on a 2048x2048 map image
 */
-import { create, all } from 'mathjs';
+import { create, all, im } from 'mathjs';
 
 // manually extrapolated coords from image
 const CONTROL_POIS = [
@@ -54,12 +54,12 @@ const pixelYFunc = fitAffineModel(CONTROL_POIS, 'pixelY');
 /*
 * converts game coordinates to normalized image coordinates (0–1 range)
 */
-export function gameToImage(x, y) {
+export function gameToImage(x, y, imageSize) {
     const px = pixelXFunc(x, y);
     const py = pixelYFunc(x, y);
-    // normalize to 0–1 range based on 2048px image size
+    // normalize to 0–1 range based on current image size
     return {
-        x: px / 2048,
-        y: py / 2048
+        left: px / 2048 * imageSize.width,
+        top: py / 2048 * imageSize.height
     };
 }

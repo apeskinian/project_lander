@@ -86,10 +86,8 @@ export default function Map() {
         // generate random POI
         const pickedPOI = options[Math.floor(Math.random() * options.length)];
         // get x and y pixel coords from game coords
-        const { x, y } = gameToImage(pickedPOI.location.x, pickedPOI.location.y);
-        const left = x * imageSize.width;
-        const top = y * imageSize.height;
-        // set state to reflect new POI
+        const { left, top } = gameToImage(pickedPOI.location.x, pickedPOI.location.y, imageSize);
+        // set chosen POI
         setChosenPOI({ name: pickedPOI.name, left, top });
         setMarkerSize('2rem')
         setMarkerVisible(true);
@@ -108,7 +106,7 @@ export default function Map() {
             setOffsetY(offsetY);
             setMarkerSize('0.8rem');
             setZoomTransform(`translate(${offsetX}px, ${offsetY}px) scale(${zoom})`);
-        }, 500);
+        }, 750);
         // label is shown
         setTimeout(() => {
             setShowLabel(true);
@@ -143,51 +141,20 @@ export default function Map() {
     return (
         <>
             <main onClick={handleChooseLocation} onDoubleClick={handleDoubleClick}>
-                <div id='map' className="relative">
-                    <div
-                        ref={zoomRef}
-                        className="transition-transform duration-2000 ease-in-out"
-                        style={{ transform: zoomTransform, transformOrigin: 'top left' }}
-                    >
-                        <img
-                            src={mapData.images.blank}
-                            alt='Fortnite POIs map'
-                            ref={imageRef}
-                        />
+                <div id="map-container" className="relative">
+                    <div id='map' ref={zoomRef} style={{ transform: zoomTransform }}>
+                        <img src={mapData.images.blank} alt='Fortnite POIs map' ref={imageRef}/>
                         {chosenPOI && (
-                            <div
-                                key={`${chosenPOI.left}+${chosenPOI.top}`}
-                                className="absolute text-amber-300 flex flex-col items-center whitespace-nowrap"
-                                style={{
-                                    left: `${chosenPOI.left}px`,
-                                    top: `${chosenPOI.top}px`,
-                                    transform: 'translate(-50%, -50%)',
-                                    opacity: markerVisible ? 1 : 0,
-                                    transition: 'opacity 0.5s ease-in-out',
-                                }}
-                            >
+                            <div id="poi-marker" style={{ left: `${chosenPOI.left}px`, top: `${chosenPOI.top}px`, opacity: markerVisible ? 1 : 0 }}>
                                 <FontAwesomeIcon
-                                    icon={faBullseye}
-                                    style={{ fontSize: markerSize }}
                                     className="drop-shadow-[0_0_4px_black] transition-all duration-1000 ease-in-out"
-                                    beat
+                                    icon={faBullseye} style={{ fontSize: markerSize }} beat
                                 />
                             </div>
                         )}
                     </div>
                     {chosenPOI && (
-                        <p
-                            id="chosen-poi"
-                            className="absolute bg-gray-800/30 drop-shadow-[0_0_2px_black] text-[1.8rem] text-white leading-tight"
-                            style={{
-                                left: `${chosenPOI.left * zoomLevel + offsetX}px`,
-                                top: `${chosenPOI.top * zoomLevel + offsetY + 50}px`,
-                                transform: 'translate(-50%, 0)',
-                                pointerEvents: 'none',
-                                opacity: showLabel ? 1 : 0,
-                                transition: 'opacity 0.2s ease-in-out',
-                            }}
-                        >
+                        <p id="poi-label" style={{ left: `${chosenPOI.left * zoomLevel + offsetX}px`, top: `${chosenPOI.top * zoomLevel + offsetY + 50}px`, opacity: showLabel ? 1 : 0 }}>
                             {chosenPOI.name.toUpperCase()}
                         </p>
                     )}

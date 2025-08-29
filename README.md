@@ -84,7 +84,7 @@ The colour scheme for the site is a monochromatic interface combined with the fu
 
 | Colour Reference | Usage |
 | --- | --- |
-| #FCD34D | POI Marker |
+| #FFD700 | POI Marker |
 | #093576 | Background for the map image |
 | #6a7282 | Footer text and icons |
 

@@ -45,11 +45,28 @@ h2 {
     cursor: pointer;
 }
 
-#chosen-poi {
+#poi-marker {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap;
+    color: #FFD700;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease-in-out;
+}
+
+#poi-label {
     font-family: 'Fjalla One', sans-serif;
+    position: absolute;
+    background-color: rgba(50, 50, 50, 0.6);
     padding: 4px;
-    border-radius: 4px;
+    border-radius: 8px;
     text-align: center;
+    font-size: 1.8rem;
+    color: white;
+    transition: opacity 0.2s ease-in-out;
+    transform: translate(-50%, 0);
 }
 
 #poi-toggle {
@@ -62,6 +79,11 @@ h2 {
     font-family: 'Fira Sans', sans-serif;
     font-weight: 400;
     font-size: 1.2rem;
+}
+
+#map {
+    transition: transform 2000ms ease-in-out;
+    transform-origin: top left;
 }
 
 .message-block {
