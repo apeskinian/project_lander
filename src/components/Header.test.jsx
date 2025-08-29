@@ -8,7 +8,7 @@ const triggerReset = vi.fn()
 const setShowFullPOIS = vi.fn()
 let showFullPOISValue = true
 // mocking the usePOI hook
-vi.mock('../context/POIContext', () => ({
+vi.mock('../context/usePOIS', () => ({
     usePOI: () => ({ showFullPOIS: showFullPOISValue, setShowFullPOIS, triggerReset }),
 }))
 
