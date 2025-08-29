@@ -50,26 +50,15 @@ export default function Map() {
         zoomOutReset();
     }, [showFullPOIS, resetTimestamp]);
 
-    // return dynamic message
+    // dynamic message for current status
     if (loading || error || !mapData) return (
         <main>
-            {loading && !mapData && (
-                <div className="message-block">
-                    <p>Loading map data...</p>
-                </div>
-            )}
-            {error && (
-                <div className="message-block">
-                    <p className="mb-3">Error loading map: <strong>{error.message}</strong></p>
-                    <p>Please try reloading the page, if the error persists, please contact me.</p>
-                </div>
-            )}
-            {!mapData && !loading && !error && (
-                <div className="message-block">
-                    <p className="mb-3">No map data available.</p>
-                    <p>Please try reloading the page, if this keeps happening, please contact me.</p>
-                </div>
-            )}
+            <div className="message-block">
+                {loading && !mapData && (<p>Loading map data...</p>)}
+                {error && (<p className="mb-3">Error loading map: <strong>{error.message}</strong></p>)}
+                {!mapData && !loading && !error && (<p className="mb-3">No map data available.</p>)}
+                {(error || (!mapData && !loading)) && (<p>Please try reloading the page, if this keeps happening, please contact me.</p>)}
+            </div>
         </main>
     )
 
@@ -77,7 +66,9 @@ export default function Map() {
      * getting all landing zones from mapData according to current chosen
      * filter set from the toggle in the header
     */
-    const options = showFullPOIS ? mapData.pois : mapData.pois.filter(poi => poi.id.startsWith('Athena.Location.POI'));
+    const options = (
+        showFullPOIS ? mapData.pois : mapData.pois.filter(poi => poi.id.startsWith('Athena.Location.POI'))
+    );
 
     // zoom the map out and reset
     function zoomOutReset() {
@@ -127,8 +118,12 @@ export default function Map() {
 
     // picks new POI when map is clicked
     function handleChooseLocation() {
+        // first check if the map has been clicked recently and is currently
+        // picking a new location
         if (isChoosing.current) return;
+        // set isChoosing to true, multiple clicks will not queue now
         isChoosing.current = true;
+        // check if a POI was currently being shown
         if (showLabel) {
             zoomOutReset();
             setTimeout(() => {
