@@ -14,6 +14,8 @@ dist-ssr
 *.local
 .env
 
+cypress/downloads/
+
 # Editor directories and files
 .vscode/*
 .vscode
