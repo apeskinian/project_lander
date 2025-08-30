@@ -123,11 +123,10 @@ The colour scheme for the site is a monochromatic interface combined with the fu
 | As a user | I can toggle between POI sets easily | so that I don't have to spend too much time on preferences. |
 | As a user | I can see the chosen POI focused and zoomed in on the map | so that know exactly where to land. |
 | As a user | I can see the name of the POI | so that I know where I am landing. |
-| As a user | I can access and use the app on mobile devices | so that can us it wherever I play Fortnite. |
+| As a user | I can access and use the app on mobile devices | so that I can use it wherever I play Fortnite. |
 | As a user | I can install the app as a PWA on my homescreen | so that it feels like a native app with fast access. |
-| As a user | I can see welcome message on first launch | so that I understand how to use the app. |
+| As a user | I can see a welcome message on first launch | so that I understand how to use the app. |
 | As a user | I can use the app without needing to sign in | so that I can jump straight into gameplay without any friction. |
-| As a user | I can rely on the app to be responsive across devices | so that I can always see the map and POI clearly no matter my device. |
 | As a user | I can use the app in landscape or portrait mode | so that it adapts to how I hold my device. |
 | As a user | I can rely that the map and POIs are up to date | so that I don't need to worry about having to input anything myself to update it. |
 
