@@ -129,7 +129,8 @@ The colour scheme for the site is a monochromatic interface combined with the fu
 | As a user | I can use the app without needing to sign in | so that I can jump straight into gameplay without any friction. |
 | As a user | I can use the app in landscape or portrait mode | so that it adapts to how I hold my device. |
 | As a user | I can rely that the map and POIs are up to date | so that I don't need to worry about having to input anything myself to update it. |
-
+| As a developer | I should carry about automated testing on all applicable files | so that I catch problems early and ensure consistent behaviour across updates. |
+| As a developer | I should perform manual testing across key user flows and devices | so that I can validate real-world usability, catch edge cases not covered by automation, and ensure a smooth experience for all users. |
 
 ## Wireframes
 
