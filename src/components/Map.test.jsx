@@ -105,7 +105,7 @@ describe('Map component', () => {
         const mapElement = screen.getByAltText('Fortnite POIs map');
         expect(mapElement).toBeInTheDocument();
     })
-    it('filters POIs when showFullPOIS is false', () => {
+    it('filters POIs when showFullPOIS is false', async () => {
         // arrange
         showFullPOISValue = false;
         render(<Map />);
@@ -113,9 +113,9 @@ describe('Map component', () => {
         userEvent.click(screen.getByRole('main'));
         // assert
         const label = screen.findByText(/TEST POI/i);
-        expect(label).resolves.toBeInTheDocument();
+        await expect(label).resolves.toBeInTheDocument();
     });
-    it('does not filter POIs when showFullPOIS is true', () => {
+    it('does not filter POIs when showFullPOIS is true', async () => {
         // arrange
         mapDataValue = {
             images: { blank: 'test-image-url' },
@@ -128,7 +128,7 @@ describe('Map component', () => {
         userEvent.click(screen.getByRole('main'));
         // assert
         const label = screen.findByText(/AND ANOTHER POI/i);
-        expect(label).resolves.toBeInTheDocument();
+        await expect(label).resolves.toBeInTheDocument();
     });
     it('clears POI marker and label on image resize', async () => {
         // arrange
