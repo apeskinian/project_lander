@@ -188,7 +188,7 @@ describe('Map component', () => {
         main.addEventListener('dblclick', dblClickHandler);
         await userEvent.dblClick(main);
         expect(dblClickHandler).toHaveBeenCalled();
-        // check that preventDefault was actually called on the event
+        // assert
         const event = dblClickHandler.mock.calls[0][0];
         expect(event.defaultPrevented).toBe(true);
     })
