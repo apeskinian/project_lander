@@ -1,5 +1,5 @@
 import { render, screen, act } from '@testing-library/react'
-import { expect } from 'vitest'
+import { expect, it } from 'vitest'
 import userEvent from '@testing-library/user-event';
 import Map from './Map';
 
@@ -151,7 +151,6 @@ describe('Map component', () => {
         render(<Map />)
         // act
         const main = screen.getByRole('main');
-        // const labelElement = screen.getByTestId('poi-label')
         await userEvent.click(main);
         await new Promise(res => setTimeout(res, 2200));
         // assert
@@ -159,5 +158,38 @@ describe('Map component', () => {
         const labelElement = screen.getByTestId('poi-label')
         expect(mapElement.style.transform).toContain('scale(5)');
         expect(labelElement).toBeInTheDocument();
+    })
+    it('zooms out before zooming back for a new POI', async () => {
+        // arrange
+        render(<Map />)
+        // act (click main and wait for zoom in)
+        const main = screen.getByRole('main');
+        await userEvent.click(main);
+        await new Promise(res => setTimeout(res, 2200));
+        // assert
+        const markerElement = screen.getByTestId('poi-marker')
+        expect(markerElement).toBeInTheDocument();
+        // act (click main and wait for zoom out)
+        await userEvent.click(main);
+        await new Promise(res => setTimeout(res, 200));
+        const mapElement = screen.getByTestId('map')
+        // assert
+        expect(mapElement.style.transform).toContain('scale(1)');
+        // wait for zoom in again
+        await new Promise(res => setTimeout(res, 4500));
+        expect(mapElement.style.transform).toContain('scale(5)');
+    }, 7000)
+    it('prevents default zoom behaviour on double click', async () => {
+        // arrange
+        render(<Map />);
+        // act
+        const main = screen.getByRole('main');
+        const dblClickHandler = vi.fn();
+        main.addEventListener('dblclick', dblClickHandler);
+        await userEvent.dblClick(main);
+        expect(dblClickHandler).toHaveBeenCalled();
+        // check that preventDefault was actually called on the event
+        const event = dblClickHandler.mock.calls[0][0];
+        expect(event.defaultPrevented).toBe(true);
     })
 })
