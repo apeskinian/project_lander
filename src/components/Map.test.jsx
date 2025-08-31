@@ -192,4 +192,4 @@ describe('Map component', () => {
         const event = dblClickHandler.mock.calls[0][0];
         expect(event.defaultPrevented).toBe(true);
     })
-})
+});
