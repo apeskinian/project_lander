@@ -1,8 +1,7 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import { expect } from 'vitest'
 import userEvent from '@testing-library/user-event';
 import Map from './Map';
-import { im } from 'mathjs';
 
 // mocking the font awesome icon
 vi.mock('@fortawesome/react-fontawesome', () => ({
@@ -37,7 +36,11 @@ vi.mock('../util/pixelMap', () => ({
 }))
 
 //mocking the resize observer
+let resizeCallback;
 class ResizeObserver {
+    constructor(callback) {
+        resizeCallback = callback;
+    }
     observe() { }
     unobserve() { }
     disconnect() { }
@@ -127,4 +130,34 @@ describe('Map component', () => {
         const label = screen.findByText(/AND ANOTHER POI/i);
         expect(label).resolves.toBeInTheDocument();
     });
+    it('clears POI marker and label on image resize', async () => {
+        // arrange
+        render(<Map />);
+        // act
+        const main = screen.getByRole('main');
+        await userEvent.click(main);
+        const marker = await screen.findByTestId('poi-marker');
+        expect(marker).toBeInTheDocument();
+        // simulate a resize event
+        act(() => {
+            resizeCallback([{ contentRect: { width: 82, height: 2010 } }]);
+        });
+        // assert
+        expect(screen.queryByTestId('poi-marker')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('poi-label')).not.toBeInTheDocument();
+    });
+    it('zooms in to the POI and shows label after clicking the map', async () => {
+        // arrange
+        render(<Map />)
+        // act
+        const main = screen.getByRole('main');
+        // const labelElement = screen.getByTestId('poi-label')
+        await userEvent.click(main);
+        await new Promise(res => setTimeout(res, 2200));
+        // assert
+        const mapElement = screen.getByTestId('map')
+        const labelElement = screen.getByTestId('poi-label')
+        expect(mapElement.style.transform).toContain('scale(5)');
+        expect(labelElement).toBeInTheDocument();
+    })
 })

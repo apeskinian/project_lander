@@ -140,11 +140,11 @@ export default function Map() {
         <>
             <main onClick={handleChooseLocation} onDoubleClick={handleDoubleClick}>
                 <div id="map-container" className="relative">
-                    <div id='map' ref={zoomRef} style={{ transform }}>
+                    <div id='map' data-testid='map' ref={zoomRef} style={{ transform }}>
                         <img src={mapData.images.blank} alt='Fortnite POIs map' ref={imageRef} />
                         {chosenPOI && (
                             <div
-                                id="poi-marker"
+                                id="poi-marker" data-testid="poi-marker"
                                 style={{
                                     left: `${chosenPOI.left}px`,
                                     top: `${chosenPOI.top}px`,
@@ -159,7 +159,7 @@ export default function Map() {
                     </div>
                     {chosenPOI && (
                         <p
-                            id="poi-label"
+                            id="poi-label" data-testid="poi-label"
                             style={{
                                 left: `${chosenPOI.left * zoomState.level + zoomState.offsetX}px`,
                                 top: `${chosenPOI.top * zoomState.level + zoomState.offsetY}px`,
