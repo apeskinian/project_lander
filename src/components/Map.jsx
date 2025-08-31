@@ -14,11 +14,12 @@ export default function Map() {
     // refs
     const imageRef = useRef(null);
     const zoomRef = useRef(null);
+    const labelAppearance = useRef(null);
     // state
     const [chosenPOI, setChosenPOI] = useState()
     const [poiMarker, setPoiMarker] = useState({ isChoosing: false, targetVisible: false, labelVisible: false, size: '2rem' })
     const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
-    const [zoomState, setZoomState] = useState({level: 1, offsetX: 0, offsetY: 0})
+    const [zoomState, setZoomState] = useState({ level: 1, offsetX: 0, offsetY: 0 })
 
     const transform = `translate(${zoomState.offsetX}px, ${zoomState.offsetY}px) scale(${zoomState.level})`
     /*
@@ -68,9 +69,13 @@ export default function Map() {
 
     // zoom the map out and reset
     function zoomOutReset() {
-        setPoiMarker(prevState => ({...prevState, targetVisible: false, labelVisible: false}))
+        if (labelAppearance.current) {
+            clearTimeout(labelAppearance.current);
+            labelAppearance.current = null;
+        }
+        setPoiMarker(prevState => ({ ...prevState, targetVisible: false, labelVisible: false }));
         setTimeout(() => {
-            setZoomState({level: 1, offsetX: 0, offsetY: 0})
+            setZoomState({ level: 1, offsetX: 0, offsetY: 0 })
         }, 200)
     }
 
@@ -86,7 +91,7 @@ export default function Map() {
         const { left, top } = gameToImage(pickedPOI.location.x, pickedPOI.location.y, imageSize);
         // set chosen POI and show marker
         setChosenPOI({ name: pickedPOI.name, left, top });
-        setPoiMarker(prevState => ({...prevState, targetVisible: true, size:'2rem'}))
+        setPoiMarker(prevState => ({ ...prevState, targetVisible: true, size: '2rem' }))
         // zooms in to chosen POI, marker size is reduced
         setTimeout(() => {
             const zoom = 5;
@@ -97,12 +102,15 @@ export default function Map() {
             const scaledTop = top * zoom;
             const offsetX = containerWidth / 2 - scaledLeft;
             const offsetY = containerHeight / 2 - scaledTop;
-            setZoomState({level: zoom, offsetX, offsetY})
-            setPoiMarker(prevState => ({...prevState, size: '0.8rem'}));
+            setZoomState({ level: zoom, offsetX, offsetY })
+            setPoiMarker(prevState => ({ ...prevState, size: '0.8rem' }));
         }, 750);
         // show label
         setTimeout(() => {
-            setPoiMarker(prevState => ({...prevState, isChoosing: false, labelVisible: true}))
+            setPoiMarker(prevState => ({ ...prevState, isChoosing: false }))
+        }, 2200);
+        labelAppearance.current = setTimeout(() => {
+            setPoiMarker(prevState => ({ ...prevState, labelVisible: true }))
         }, 2200);
     }
 
@@ -113,7 +121,7 @@ export default function Map() {
         // set isChoosing to true to stop queuing
         setPoiMarker(prev => ({ ...prev, isChoosing: true }));
         // check if a POI was currently being shown if so reset map view before picking new POI
-        if (poiMarker.labelVisible) {
+        if (poiMarker.targetVisible) {
             zoomOutReset();
             setTimeout(() => {
                 pickPOI();
