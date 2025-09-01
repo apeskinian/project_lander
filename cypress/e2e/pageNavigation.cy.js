@@ -29,10 +29,9 @@ describe('Header', () => {
   it('has a h2 element "lander" that resets the map', () => {
     cy.contains('h2', 'lander').should('exist')
     cy.get('#map').should('exist')
-    cy.pickInitialPOI();
+    cy.get('main').click();
     cy.assertMapScale(5)
     cy.contains('h2', 'lander').click()
-    cy.wait(2800)
     cy.assertMapScale(1)
   })
   it('has a toggle element that switches POI sets and resets the map when toggled', () => {
@@ -40,10 +39,9 @@ describe('Header', () => {
     cy.get('#showing-pois').should('exist')
       .and('contain', 'All POIs')
     cy.get('#map').should('exist')
-    cy.pickInitialPOI();
+    cy.get('main').click();
     cy.assertMapScale(5)
     cy.get('#poi-toggle').click()
-    cy.wait(2800)
     cy.assertMapScale(1)
     cy.get('#showing-pois').should('contain', 'Main POIs')
   })

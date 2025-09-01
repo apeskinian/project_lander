@@ -25,19 +25,20 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 // command to check map scale after POI selections and map resets
-Cypress.Commands.add('assertMapScale', (expectedScale) => {
-    cy.get('#map')
-        .invoke('css', 'transform')
-        .then(transform => {
+Cypress.Commands.add('assertMapScale', (expectedScale, options = {}) => {
+    cy.get('#map', options)
+        .should($mapImage => {
+            const transform = $mapImage.css('transform');
             const match = transform.match(/matrix\(([^)]+)\)/);
             expect(match).to.not.be.null;
+
             const [scaleX, , , scaleY] = match[1].split(', ').map(parseFloat);
             expect(scaleX).to.be.closeTo(expectedScale, 0.01);
             expect(scaleY).to.be.closeTo(expectedScale, 0.01);
         });
 });
 
-Cypress.Commands.add('pickInitialPOI', () => {
-    cy.get('main').click();
-    cy.wait(2800);
+Cypress.Commands.add('pickPOI', () => {
+    cy.get('#map').should('exist')
+    cy.get('main').click()
 })
