@@ -15,6 +15,7 @@ dist-ssr
 .env
 
 cypress/downloads/
+cypress/videos/
 
 # Editor directories and files
 .vscode/*

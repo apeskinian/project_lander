@@ -1,6 +1,7 @@
 describe('a|lander', () => {
     beforeEach(() => {
         cy.visit('http://localhost:5173/')
+        cy.wait(1000)
     })
     it('shows a POI with label and marker when clicking the map', () => {
         cy.pickPOI();
