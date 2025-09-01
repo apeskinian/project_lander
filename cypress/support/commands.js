@@ -39,6 +39,10 @@ Cypress.Commands.add('assertMapScale', (expectedScale, options = {}) => {
 });
 
 Cypress.Commands.add('pickPOI', () => {
-    cy.get('#map').should('exist')
+    cy.get('#map')
+        .should('exist')
+        .and('be.visible')
+        .invoke('width')
+        .should('be.greaterThan', 0);
     cy.get('main').click()
 })

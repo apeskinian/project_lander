@@ -27,7 +27,6 @@ describe('Header', () => {
     })
   })
   it('has a h2 element "lander" that resets the map', () => {
-    cy.wait(1000);
     cy.contains('h2', 'lander').should('exist')
     cy.pickPOI();
     cy.assertMapScale(5)
