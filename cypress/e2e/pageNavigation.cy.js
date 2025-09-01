@@ -1,8 +1,13 @@
 describe('a|lander', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5173/')
+    // act
+    cy.visit('http://localhost:5173/');
+  })
+  afterEach(() => {
+    cy.wait(500);
   })
   it('renders a header, main, and footer elements', () => {
+    // assert
     cy.get('header').should('exist')
     cy.get('main').should('exist')
     cy.get('footer').should('exist')
@@ -11,9 +16,11 @@ describe('a|lander', () => {
 
 describe('Header', () => {
   beforeEach(() => {
+    // act
     cy.visit('http://localhost:5173')
   })
   it('has a h1 element "a|" that links to the portfolio site', () => {
+    // assert
     cy.contains('h1', 'a|')
     .should('exist')
     .within(() => {
@@ -27,6 +34,7 @@ describe('Header', () => {
     })
   })
   it('has a h2 element "lander" that resets the map', () => {
+    // assert
     cy.contains('h2', 'lander').should('exist')
     cy.pickPOI();
     cy.assertMapScale(5)
@@ -34,6 +42,7 @@ describe('Header', () => {
     cy.assertMapScale(1)
   })
   it('has a toggle element that switches POI sets and resets the map when toggled', () => {
+    // assert
     cy.get('#poi-toggle').should('exist')
     cy.get('#showing-pois').should('exist')
     .and('contain', 'All POIs')
@@ -47,9 +56,14 @@ describe('Header', () => {
 
 describe('Footer', () => {
   beforeEach(() => {
+    // act
     cy.visit('http://localhost:5173')
   })
+  afterEach(() => {
+    cy.wait(500);
+  })
   it('has a link "apeskinian|" to the portfolio site', () => {
+    // assert
     cy.get('#apeskinian')
     .should('exist')
     .within(() => {
@@ -64,6 +78,7 @@ describe('Footer', () => {
     })
   })
   it('has a link to the apeskinian LinkedIn profile', () => {
+    // assert
     cy.get('#socials-links')
     .should('exist')
     .within(() => {
@@ -79,6 +94,7 @@ describe('Footer', () => {
     })
   })
   it('has a links to the apeskinian GitHub profile', () => {
+    // assert
     cy.get('#socials-links')
     .should('exist')
     .within(() => {
