@@ -7,7 +7,7 @@ export default function Header() {
         <header className="p-3 flex items-center justify-between">
             <div className="flex items-center">
                 <h1 id="header">
-                    <a href="http://www.apeskinian.com" target="_blank">a|</a>
+                    <a href="https://www.apeskinian.com" target="_blank" aria-label='visit my portfolio site'>a|</a>
                 </h1>
                 <h2 onClick={triggerReset}>lander</h2>
             </div>
