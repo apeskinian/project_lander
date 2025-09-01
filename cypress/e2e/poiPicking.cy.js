@@ -31,14 +31,40 @@ describe('a|lander', () => {
         cy.pickPOI();
         cy.wait(1000)
         cy.get('#showing-pois')
-            .invoke('text')
-            .then(text => {
-                const checkText = text === 'All POIs' ? 'Main POIs' : 'All POIs';
-                cy.get('#poi-toggle').click()
-                cy.get('#poi-label').should('not.be.visible');
-                cy.get('#poi-marker').should('not.be.visible');
-                cy.assertMapScale(1);
-                cy.get('#showing-pois').should('contain', checkText)
-            })  
+        .invoke('text')
+        .then(text => {
+            const checkText = text === 'All POIs' ? 'Main POIs' : 'All POIs';
+            cy.get('#poi-toggle').click()
+            cy.get('#poi-label').should('not.be.visible');
+            cy.get('#poi-marker').should('not.be.visible');
+            cy.assertMapScale(1);
+            cy.get('#showing-pois').should('contain', checkText)
+        })  
+    })
+    it('clicking the "lander link while next POI is being chosen cancels and resets the map"', () => {
+        cy.pickPOI();
+        cy.assertMapScale(5);
+        cy.pickPOI();
+        cy.wait(1000)
+        cy.contains('h2', 'lander').click();
+        cy.get('#poi-label').should('not.be.visible');
+        cy.get('#poi-marker').should('not.be.visible');
+        cy.assertMapScale(1);
+    })
+    it('clicking the "POI toggle while next POI is being chosen cancels, resets the map, and switches POI set"', () => {
+        cy.pickPOI();
+        cy.assertMapScale(5);
+        cy.pickPOI();
+        cy.wait(1000)
+        cy.get('#showing-pois')
+        .invoke('text')
+        .then(text => {
+            const checkText = text === 'All POIs' ? 'Main POIs' : 'All POIs';
+            cy.get('#poi-toggle').click()
+            cy.get('#poi-label').should('not.be.visible');
+            cy.get('#poi-marker').should('not.be.visible');
+            cy.assertMapScale(1);
+            cy.get('#showing-pois').should('contain', checkText)
+        })  
     })
 })
