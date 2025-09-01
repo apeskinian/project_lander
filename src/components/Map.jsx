@@ -15,6 +15,7 @@ export default function Map() {
     const imageRef = useRef(null);
     const zoomRef = useRef(null);
     const labelAppearance = useRef(null);
+    const showNextPOI = useRef(null);
     // state
     const [chosenPOI, setChosenPOI] = useState()
     const [poiMarker, setPoiMarker] = useState({ isChoosing: false, targetVisible: false, labelVisible: false, size: '2rem' })
@@ -73,7 +74,11 @@ export default function Map() {
             clearTimeout(labelAppearance.current);
             labelAppearance.current = null;
         }
-        setPoiMarker(prevState => ({ ...prevState, targetVisible: false, labelVisible: false }));
+        if (showNextPOI.current) {
+            clearTimeout(showNextPOI.current);
+            showNextPOI.current = null;
+        }
+        setPoiMarker(prevState => ({ ...prevState, targetVisible: false, labelVisible: false, isChoosing: false }));
         setTimeout(() => {
             setZoomState({ level: 1, offsetX: 0, offsetY: 0 })
         }, 200)
@@ -123,7 +128,7 @@ export default function Map() {
         // check if a POI was currently being shown if so reset map view before picking new POI
         if (poiMarker.targetVisible) {
             zoomOutReset();
-            setTimeout(() => {
+            showNextPOI.current = setTimeout(() => {
                 pickPOI();
             }, 2000);
         } else {
