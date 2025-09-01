@@ -1,14 +1,14 @@
-describe('a|lander', () => {
+describe('Map', () => {
     beforeEach(() => {
         cy.visit('http://localhost:5173/')
     })
-    it('shows a POI with label and marker when clicking the map', () => {
+    it('shows a POI then zooms in with label and marker when clicked', () => {
         cy.pickPOI();
         cy.get('#poi-label').should('exist')
         cy.get('#poi-marker').should('exist')
         cy.assertMapScale(5)
     })
-    it('when a POI is already active, clicking the map triggers a zoom-out, hides the current POI, and zooms in to display the next one', () => {
+    it('resets map zoom, hides the current POI, and zooms in to display the next one when clicked with POI already being shown', () => {
         cy.pickPOI();
         cy.assertMapScale(5);
         cy.pickPOI();
@@ -19,7 +19,7 @@ describe('a|lander', () => {
         cy.get('#poi-label').should('be.visible');
         cy.get('#poi-marker').should('be.visible');
     })
-    it('clicking the "lander link while POI is being chosen cancels and resets the map"', () => {
+    it('cancels POI picking and resets map zoom when the "lander link is clicked', () => {
         cy.pickPOI();
         cy.wait(1000)
         cy.contains('h2', 'lander').click();
@@ -27,7 +27,7 @@ describe('a|lander', () => {
         cy.get('#poi-marker').should('not.be.visible');
         cy.assertMapScale(1);
     })
-    it('clicking the "POI toggle while POI is being chosen cancels, resets the map, and switches POI set"', () => {
+    it('cancels POI picking and resets map zoom when the POI toggle is clicked', () => {
         cy.pickPOI();
         cy.wait(1000)
         cy.get('#showing-pois')
@@ -41,7 +41,7 @@ describe('a|lander', () => {
             cy.get('#showing-pois').should('contain', checkText)
         })  
     })
-    it('clicking the "lander link while next POI is being chosen cancels and resets the map"', () => {
+    it('cancels next POI picking and resets map zoom when the "lander link is clicked', () => {
         cy.pickPOI();
         cy.assertMapScale(5);
         cy.pickPOI();
@@ -51,7 +51,7 @@ describe('a|lander', () => {
         cy.get('#poi-marker').should('not.be.visible');
         cy.assertMapScale(1);
     })
-    it('clicking the "POI toggle while next POI is being chosen cancels, resets the map, and switches POI set"', () => {
+    it('cancels next POI picking and resets map zoom when the POI toggle is clicked', () => {
         cy.pickPOI();
         cy.assertMapScale(5);
         cy.pickPOI();
