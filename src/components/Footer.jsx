@@ -6,7 +6,7 @@ export default function Footer({ onOpen }) {
     return (
         <footer className="p-3 flex justify-between items-center text-gray-500">
             <div className='ms-6 flex items-center text-3xl'>
-                <FontAwesomeIcon data-testid="help-icon" icon={faCircleInfo} onClick={onOpen}/>
+                <FontAwesomeIcon id="help-icon" icon={faCircleInfo} onClick={onOpen}/>
             </div>
             <div id='socials-links' className='me-6 flex items-center gap-1 text-3xl'>
                 <p id='apeskinian'>

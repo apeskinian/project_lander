@@ -12,6 +12,26 @@ describe('a|lander', () => {
     cy.get('main').should('exist')
     cy.get('footer').should('exist')
   })
+  it('shows the modal', () => {
+    // assert
+    cy.get('.help-modal').should('exist')
+  })
+  it('closes the modal when the "Close" button is clicked', () => {
+    // assert
+    cy.get('.help-modal').should('exist')
+    // act
+    cy.get('#close-modal').click()
+    // assert
+    cy.get('.help-modal').should('not.exist')
+  })
+  // it('closes the modal when the ESC key is pressed', () => {
+  //   // assert
+  //   cy.get('.help-modal').should('exist')
+  //   // act
+  //   // FIND A WAY TO DO THIS
+  //   // assert
+  //   cy.get('.help-modal').should('not.exist')
+  // })
 })
 
 describe('Header', () => {
@@ -108,5 +128,18 @@ describe('Footer', () => {
         cy.request(href).its('status').should('eq', 200);
       });
     })
+  })
+  it('has an "i" icon to show the modal', () => {
+    // assert
+    cy.get('#help-icon').should('exist')
+  })
+  it('clicking the "i" icon shows the modal', () => {
+    // assert
+    cy.get('.help-modal').should('not.exist')
+    cy.get('#help-icon').should('exist')
+    // act
+    .click()
+    // assert
+    cy.get('.help-modal').should('exist')
   })
 })
