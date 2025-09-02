@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullseye } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 import { usePOI } from "../context/usePOIS";
 import { useMapData } from "../hooks/useMapData";
@@ -147,6 +148,10 @@ export default function Map() {
         e.preventDefault();
     };
 
+    function handleOpenModal() {
+        setOpenModal(true);
+    }
+
     function closeModal() {
         setOpenModal(false);
     }
@@ -175,17 +180,18 @@ export default function Map() {
                     </div>
                     {chosenPOI && (
                         <p
-                            id="poi-label" data-testid="poi-label"
-                            style={{
-                                left: `${chosenPOI.left * zoomState.level + zoomState.offsetX}px`,
-                                top: `${chosenPOI.top * zoomState.level + zoomState.offsetY}px`,
-                                opacity: poiMarker.labelVisible ? 1 : 0
-                            }}>
+                        id="poi-label" data-testid="poi-label"
+                        style={{
+                            left: `${chosenPOI.left * zoomState.level + zoomState.offsetX}px`,
+                            top: `${chosenPOI.top * zoomState.level + zoomState.offsetY}px`,
+                            opacity: poiMarker.labelVisible ? 1 : 0
+                        }}>
                             {chosenPOI.name.toUpperCase()}
                         </p>
                     )}
                 </div>
             </main >
+            <FontAwesomeIcon className="help-icon" icon={faCircleInfo} onClick={handleOpenModal}/>
         </>
     )
 }
