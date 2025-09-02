@@ -153,7 +153,7 @@ export default function Map() {
 
     return (
         <>
-            <Modal open={openModal} onClose={closeModal} />
+            {openModal && <Modal open={openModal} onClose={closeModal} />}
             <main onClick={handleChooseLocation} onDoubleClick={handleDoubleClick}>
                 <div id="map-container" className="relative">
                     <div id='map' data-testid='map' ref={zoomRef} style={{ transform }}>

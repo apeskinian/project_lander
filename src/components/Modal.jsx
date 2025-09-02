@@ -21,9 +21,7 @@ export default function Modal({ open, onClose }) {
             <p>Welcome to the <strong>apeskinian|</strong> Fortnite landing site picker!</p>
             <p>Click on the map to get a landing site, click again to get another!</p>
             <p>Choose between all POIs and just main ones at the top!</p>
-            <form method="dialog">
-                <button id="close-modal">Close</button>
-            </form>
+            <button id="close-modal" onClick={onClose}>Close</button>
         </dialog>,
         document.getElementById('modal')
     );
