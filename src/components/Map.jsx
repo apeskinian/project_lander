@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullseye } from '@fortawesome/free-solid-svg-icons';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 import { usePOI } from "../context/usePOIS";
 import { useMapData } from "../hooks/useMapData";
@@ -9,7 +8,7 @@ import { gameToImage } from "../util/pixelMap";
 
 import Modal from "./Modal";
 
-export default function Map() {
+export default function Map({ modalState, onClose }) {
     // context hooks
     const { showFullPOIS, resetTimestamp } = usePOI();
     //custom hooks
@@ -24,11 +23,8 @@ export default function Map() {
     const [poiMarker, setPoiMarker] = useState({ isChoosing: false, targetVisible: false, labelVisible: false, size: '2rem' })
     const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
     const [zoomState, setZoomState] = useState({ level: 1, offsetX: 0, offsetY: 0 })
-    const [ openModal, setOpenModal ] = useState(true);
 
     const transform = `translate(${zoomState.offsetX}px, ${zoomState.offsetY}px) scale(${zoomState.level})`
-    
-
 
     /*
      * sets an observer on the image and clears the current POI state if the
@@ -148,17 +144,9 @@ export default function Map() {
         e.preventDefault();
     };
 
-    function handleOpenModal() {
-        setOpenModal(true);
-    }
-
-    function closeModal() {
-        setOpenModal(false);
-    }
-
     return (
         <>
-            {openModal && <Modal open={openModal} onClose={closeModal} />}
+            {modalState && <Modal open={modalState} onClose={onClose} />}
             <main onClick={handleChooseLocation} onDoubleClick={handleDoubleClick}>
                 <div id="map-container" className="relative">
                     <div id='map' data-testid='map' ref={zoomRef} style={{ transform }}>
@@ -191,7 +179,6 @@ export default function Map() {
                     )}
                 </div>
             </main >
-            <FontAwesomeIcon className="help-icon" icon={faCircleInfo} onClick={handleOpenModal}/>
         </>
     )
 }
