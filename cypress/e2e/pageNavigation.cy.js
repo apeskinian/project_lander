@@ -18,10 +18,11 @@ describe('Header', () => {
   beforeEach(() => {
     // act
     cy.visit('http://localhost:5173')
+    cy.get('#close-modal').click()
   })
-  it('has a h1 element "a|" that links to the portfolio site', () => {
+  it('has an element "a|" that links to the portfolio site', () => {
     // assert
-    cy.contains('h1', 'a|')
+    cy.get('#a')
     .should('exist')
     .within(() => {
       cy.get('a')
@@ -33,12 +34,12 @@ describe('Header', () => {
       });
     })
   })
-  it('has a h2 element "lander" that resets the map', () => {
+  it('has an element "lander" that resets the map', () => {
     // assert
-    cy.contains('h2', 'lander').should('exist')
+    cy.get('#lander').should('exist')
     cy.pickPOI();
     cy.assertMapScale(5)
-    cy.contains('h2', 'lander').click()
+    cy.get('#lander').click()
     cy.assertMapScale(1)
   })
   it('has a toggle element that switches POI sets and resets the map when toggled', () => {

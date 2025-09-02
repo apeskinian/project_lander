@@ -6,6 +6,8 @@ import { usePOI } from "../context/usePOIS";
 import { useMapData } from "../hooks/useMapData";
 import { gameToImage } from "../util/pixelMap";
 
+import Modal from "./Modal";
+
 export default function Map() {
     // context hooks
     const { showFullPOIS, resetTimestamp } = usePOI();
@@ -21,8 +23,12 @@ export default function Map() {
     const [poiMarker, setPoiMarker] = useState({ isChoosing: false, targetVisible: false, labelVisible: false, size: '2rem' })
     const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
     const [zoomState, setZoomState] = useState({ level: 1, offsetX: 0, offsetY: 0 })
+    const [ openModal, setOpenModal ] = useState(true);
 
     const transform = `translate(${zoomState.offsetX}px, ${zoomState.offsetY}px) scale(${zoomState.level})`
+    
+
+
     /*
      * sets an observer on the image and clears the current POI state if the
      * image changes size, so when a window is resized the POI is cleared,
@@ -141,8 +147,13 @@ export default function Map() {
         e.preventDefault();
     };
 
+    function closeModal() {
+        setOpenModal(false);
+    }
+
     return (
         <>
+            <Modal open={openModal} onClose={closeModal} />
             <main onClick={handleChooseLocation} onDoubleClick={handleDoubleClick}>
                 <div id="map-container" className="relative">
                     <div id='map' data-testid='map' ref={zoomRef} style={{ transform }}>

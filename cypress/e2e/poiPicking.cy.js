@@ -2,6 +2,7 @@ describe('Map', () => {
     beforeEach(() => {
         // act
         cy.visit('http://localhost:5173/')
+        cy.get('#close-modal').click()
     })
     it('shows a POI then zooms in with label and marker when clicked', () => {
         // act
@@ -30,8 +31,8 @@ describe('Map', () => {
         // act
         cy.pickPOI();
         cy.wait(1000)
+        cy.get('#lander').click();
         // assert
-        cy.contains('h2', 'lander').click();
         cy.get('#poi-label').should('not.be.visible');
         cy.get('#poi-marker').should('not.be.visible');
         cy.assertMapScale(1);
@@ -62,8 +63,8 @@ describe('Map', () => {
         // act
         cy.pickPOI();
         cy.wait(1000)
+        cy.get('#lander').click();
         // assert
-        cy.contains('h2', 'lander').click();
         cy.get('#poi-label').should('not.be.visible');
         cy.get('#poi-marker').should('not.be.visible');
         cy.assertMapScale(1);
