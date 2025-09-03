@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { expect } from 'vitest'
 import Footer from './Footer'
 
@@ -6,10 +7,7 @@ import Footer from './Footer'
 vi.mock('@fortawesome/react-fontawesome', () => ({
     FontAwesomeIcon: () => <span data-testid="icon" />,
 }))
-vi.mock('@fortawesome/free-brands-svg-icons', () => ({
-    faLinkedin: {},
-    faGithub: {},
-}))
+vi.mock('@fortawesome/free-solid-svg-icons', () => ({ faCircleInfo: {} }))
 
 describe('Footer component', () => {
     it('renders apeskinian link', () => {
@@ -25,5 +23,15 @@ describe('Footer component', () => {
         // assert
         const helpIcon = screen.getByLabelText('show help')
         expect(helpIcon).toBeInTheDocument();
+    })
+    it('opens the modal when the help icon is clicked', async () => {
+        // arrange
+        const onOpenMock = vi.fn();
+        render(<Footer onOpen={onOpenMock}/>);
+        // act
+        const helpIcon = screen.getByLabelText('show help')
+        await userEvent.click(helpIcon);
+        // assert
+        expect(onOpenMock).toHaveBeenCalled();
     })
 })

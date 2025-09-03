@@ -13,7 +13,7 @@ export default function Modal({ open, onClose }) {
     }, [open]);
 
     return createPortal(
-        <dialog ref={dialog} className="help-modal" onClose={onClose}>
+        <dialog ref={dialog} className="help-modal" onClose={onClose} data-testid="modal" >
             <div id="modal-title">
                 <h1>a|</h1>
                 <h2>lander</h2>

@@ -159,26 +159,34 @@ describe('Map component', () => {
         expect(mapElement.style.transform).toContain('scale(5)');
         expect(labelElement).toBeInTheDocument();
     })
-    it('zooms out before zooming back for a new POI', async () => {
+    it('zooms out before zooming back for a new POIs', async () => {
         // arrange
         render(<Map />)
-        // act (click main and wait for zoom in)
+        // act (click first to select first POI)
         const main = screen.getByRole('main');
         await userEvent.click(main);
         await new Promise(res => setTimeout(res, 2200));
-        // assert
+        // assert (first POI is shown)
         const markerElement = screen.getByTestId('poi-marker')
         expect(markerElement).toBeInTheDocument();
-        // act (click main and wait for zoom out)
+        // act (click again to get second POI)
         await userEvent.click(main);
         await new Promise(res => setTimeout(res, 200));
         const mapElement = screen.getByTestId('map')
-        // assert
+        // assert (map zooms out)
         expect(mapElement.style.transform).toContain('scale(1)');
-        // wait for zoom in again
+        // wait for map to zoom in again
         await new Promise(res => setTimeout(res, 4500));
         expect(mapElement.style.transform).toContain('scale(5)');
-    }, 7000)
+        // act (click again to get third POI)
+        await userEvent.click(main);
+        await new Promise(res => setTimeout(res, 200));
+        // assert (map zooms out)
+        expect(mapElement.style.transform).toContain('scale(1)');
+        // wait for map to zoom in again
+        await new Promise(res => setTimeout(res, 4500));
+        expect(mapElement.style.transform).toContain('scale(5)');
+    }, 16000)
     it('prevents default zoom behaviour on double click', async () => {
         // arrange
         render(<Map />);
@@ -191,5 +199,19 @@ describe('Map component', () => {
         // assert
         const event = dblClickHandler.mock.calls[0][0];
         expect(event.defaultPrevented).toBe(true);
+    })
+    it('load modal when modalState is true', () => {
+        // arrange
+        const modalRoot = document.createElement('div');
+        modalRoot.setAttribute('id', 'modal');
+        document.body.appendChild(modalRoot);
+        HTMLDialogElement.prototype.showModal = vi.fn();
+        HTMLDialogElement.prototype.close = vi.fn();
+        render(<Map modalState={true} />)
+        // assert
+        const modalElement = screen.getByTestId('modal')
+        expect(modalElement).toBeInTheDocument();
+        // act
+        modalRoot.remove();
     })
 });
