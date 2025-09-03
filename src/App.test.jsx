@@ -16,10 +16,10 @@ describe('App component', () => {
         // arrange
         render(<App />)
         // assert
-        const headerLink = screen.getByRole('link', { name: 'a|' })
-        expect(headerLink).toHaveAttribute('href', 'http://www.apeskinian.com')
+        const headerLink = screen.getByTestId('header-link')
+        expect(headerLink).toHaveAttribute('href', 'https://www.apeskinian.com')
         expect(screen.getAllByRole('main')).toBeInTheDocument
-        const footerLink = screen.getByRole('link', { name: 'visit my portfolio site' })
-        expect(footerLink).toHaveAttribute('href', 'http://www.apeskinian.com')
+        const footerLink = screen.getByTestId('footer-link')
+        expect(footerLink).toHaveAttribute('href', 'https://www.apeskinian.com')
     })
 })

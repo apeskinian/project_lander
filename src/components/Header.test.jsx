@@ -23,8 +23,8 @@ describe('Header component', () => {
         // arrange
         render(<Header />);
         // assert
-        const link = screen.getByRole('link', { name: 'a|' })
-        expect(link).toHaveAttribute('href', 'http://www.apeskinian.com')
+        const link = screen.getByTestId('header-link')
+        expect(link).toHaveAttribute('href', 'https://www.apeskinian.com')
     })
     it('resets the map and refreshes data when the lander part of the title is clicked', async () => {
         // arrange

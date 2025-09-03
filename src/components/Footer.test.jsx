@@ -17,20 +17,13 @@ describe('Footer component', () => {
         render(<Footer />)
         // assert
         const link = screen.getByRole('link', { name: 'visit my portfolio site' })
-        expect(link).toHaveAttribute('href', 'http://www.apeskinian.com')
+        expect(link).toHaveAttribute('href', 'https://www.apeskinian.com')
     })
-    it('renders linkedin link', () => {
+    it('renders a help icon', () => {
         // arrange
         render(<Footer />)
         // assert
-        const link = screen.getByLabelText('view my linkedin profile')
-        expect(link).toHaveAttribute('href', 'https://www.linkedin.com/in/apeskinian/')
-    })
-    it('renders github link', () => {
-        // arrange
-        render(<Footer />)
-        // assert
-        const link = screen.getByLabelText('view my github profile')
-        expect(link).toHaveAttribute('href', 'https://github.com/apeskinian')
+        const helpIcon = screen.getByLabelText('show help')
+        expect(helpIcon).toBeInTheDocument();
     })
 })
