@@ -5,8 +5,8 @@ import Map from './components/Map.jsx'
 import Footer from './components/Footer.jsx'
 import { useState } from 'react'
 
-function App() {
-  const [ openModal, setOpenModal ] = useState(true);
+function App({ testMode = false }) {
+  const [openModal, setOpenModal] = useState(true);
 
   function handleShowModal() {
     setOpenModal(true);
@@ -16,12 +16,23 @@ function App() {
     setOpenModal(false);
   }
 
+
+  if (testMode) {
+    return (
+      <>
+        <button data-testid="open-btn" onClick={handleShowModal}>Open Modal</button>
+        <button data-testid="close-btn" onClick={handleCloseModal}>Close Modal</button>
+        <div data-testid="modal-state">{openModal ? 'Open' : 'Closed'}</div>
+      </>
+    );
+  }
+
   return (
     <>
       <POIProvider>
         <Header />
-        <Map modalState={openModal} onClose={handleCloseModal} onOpen={handleShowModal}/>
-        <Footer onOpen={handleShowModal}/>
+        <Map modalState={openModal} onClose={handleCloseModal} onOpen={handleShowModal} />
+        <Footer onOpen={handleShowModal} />
       </POIProvider>
     </>
   )
