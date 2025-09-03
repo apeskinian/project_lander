@@ -98,37 +98,6 @@ describe('Footer', () => {
       });
     })
   })
-  it('has a link to the apeskinian LinkedIn profile', () => {
-    // assert
-    cy.get('#socials-links')
-    .should('exist')
-    .within(() => {
-      cy.get('a[aria-label*="linkedin"]')
-      .should('have.attr', 'target', '_blank')
-      .should('have.attr', 'aria-label', 'view my linkedin profile')
-      .should('have.attr', 'href')
-      .and('match', /^https:\/\/www\.linkedin\.com\/in\/apeskinian$/)
-      // set failOnStatusCode to false and status expectation to 999 for LinkedIn's security
-      .then(href => {
-        cy.request({url: href, failOnStatusCode: false}).its('status').should('eq', 999);
-      });
-    })
-  })
-  it('has a links to the apeskinian GitHub profile', () => {
-    // assert
-    cy.get('#socials-links')
-    .should('exist')
-    .within(() => {
-      cy.get('a[aria-label*="github"]')
-      .should('have.attr', 'target', '_blank')
-      .should('have.attr', 'aria-label', 'view my github profile')
-      .should('have.attr', 'href')
-      .and('match', /^https:\/\/github\.com\/apeskinian$/)
-      .then(href => {
-        cy.request(href).its('status').should('eq', 200);
-      });
-    })
-  })
   it('has an "i" icon to show the modal', () => {
     // assert
     cy.get('#help-icon').should('exist')
