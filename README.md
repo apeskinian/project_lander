@@ -86,7 +86,7 @@ The colour scheme for the site is a monochromatic interface combined with the fu
 | --- | --- |
 | #FFD700 | POI Marker |
 | #093576 | Background for the map image |
-| #6a7282 | Footer text and icons |
+| #4a5568 | Footer text and icons |
 
 ### Typography
 
@@ -109,8 +109,7 @@ The colour scheme for the site is a monochromatic interface combined with the fu
     | Icon | Name | Use |
     | --- | --- | --- |
     | ![Bullseye](documentation/ux/bullseye-solid-full.svg) | [bullseye](https://fontawesome.com/icons/bullseye?f=classic&s=solid "font awesome link") | POI Highlight |
-    | ![LinkedIn](documentation/ux/linkedin-brands-solid-full.svg) | [linkedin](https://fontawesome.com/icons/linkedin?f=brands&s=solid "font awesome link") | LinkedIn footer link |
-    | ![GitHub](documentation/ux/github-brands-solid-full.svg) | [github](https://fontawesome.com/icons/github?f=brands&s=solid "font awesome link") | GitHub footer link |
+    | ![CircleInfo](documentation/ux/circle-info-solid-full.svg) | [circle info](https://fontawesome.com/icons/circle-info?f=classic&s=solid "font awesome link") | Help dialog button |
 
 ## User Stories
 
@@ -167,6 +166,24 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - ### Footer
 
-    The page footer contains a link to my [portfolio](https://www.apeskinian.com) website on the left and then links to my [LinkedIn](https://www.linkedin.com/in/apeskinian/) and [GitHub](https://github.com/apeskinian) profiles on the right by way of some FontAwesome icons.
+    The page footer contains a link to my [portfolio](https://www.apeskinian.com) website on the left and a button to open the help dialog on the right shown by a font awesome icon.
 
     ![Footer](documentation/features/footer.png "Footer image")
+
+- ### Help Dialog
+
+    When the app is first run and the help dialog is shown with the simple instructions on how to use the app. This can be accessed any time via the info button in the footer.
+
+    ![Help Dialog](documentation/features/help_dialog.png "Help dialog")
+
+- ### Map
+
+    The map is the main focus of the app and shows the current Fortnite Battle Royale map. When the user clicks on the map a random POI is chosen and a marker is placed. The map then zooms in to focus on the POI and the name label is then shown. To get a new POI the user just clicks again, this process can be repeated.
+
+    | Map Usage | Base Map | Highlighted POI |
+    | --- | --- | --- |
+    | ![Map usage](documentation/features/map_usage.gif "Using the map") | ![Base Map](documentation/features/base_map.png "Base map image") | ![Highlighted POI](documentation/features/highlighted_poi.png "Highlighted POI image") |
+
+### Future Features
+
+There are no current plans for future features, the app is designed to be as minimal and efficient as possible.
