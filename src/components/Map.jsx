@@ -18,9 +18,10 @@ export default function Map({ modalState, onClose }) {
     const zoomRef = useRef(null);
     const labelAppearance = useRef(null);
     const showNextPOI = useRef(null);
+    const isChoosing = useRef(false);
     // state
     const [chosenPOI, setChosenPOI] = useState()
-    const [poiMarker, setPoiMarker] = useState({ isChoosing: false, targetVisible: false, labelVisible: false, size: '2rem' })
+    const [poiMarker, setPoiMarker] = useState({ targetVisible: false, labelVisible: false, size: '2rem' })
     const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
     const [zoomState, setZoomState] = useState({ level: 1, offsetX: 0, offsetY: 0 })
 
@@ -80,8 +81,9 @@ export default function Map({ modalState, onClose }) {
         if (showNextPOI.current) {
             clearTimeout(showNextPOI.current);
             showNextPOI.current = null;
+            isChoosing.current = false;
         }
-        setPoiMarker(prevState => ({ ...prevState, targetVisible: false, labelVisible: false, isChoosing: false }));
+        setPoiMarker(prevState => ({ ...prevState, targetVisible: false, labelVisible: false }));
         setTimeout(() => {
             setZoomState({ level: 1, offsetX: 0, offsetY: 0 })
         }, 200)
@@ -115,7 +117,7 @@ export default function Map({ modalState, onClose }) {
         }, 750);
         // show label
         setTimeout(() => {
-            setPoiMarker(prevState => ({ ...prevState, isChoosing: false }))
+            isChoosing.current = false;
         }, 2200);
         labelAppearance.current = setTimeout(() => {
             setPoiMarker(prevState => ({ ...prevState, labelVisible: true }))
@@ -125,9 +127,9 @@ export default function Map({ modalState, onClose }) {
     // picks new POI when map is clicked
     function handleChooseLocation() {
         // check to see if a POI is currently being picked
-        if (poiMarker.isChoosing) return;
+        if (isChoosing.current) return;
         // set isChoosing to true to stop queuing
-        setPoiMarker(prev => ({ ...prev, isChoosing: true }));
+        isChoosing.current = true;
         // check if a POI was currently being shown if so reset map view before picking new POI
         if (poiMarker.targetVisible) {
             zoomOutReset();
@@ -168,12 +170,12 @@ export default function Map({ modalState, onClose }) {
                     </div>
                     {chosenPOI && (
                         <p
-                        id="poi-label" data-testid="poi-label"
-                        style={{
-                            left: `${chosenPOI.left * zoomState.level + zoomState.offsetX}px`,
-                            top: `${chosenPOI.top * zoomState.level + zoomState.offsetY}px`,
-                            opacity: poiMarker.labelVisible ? 1 : 0
-                        }}>
+                            id="poi-label" data-testid="poi-label"
+                            style={{
+                                left: `${chosenPOI.left * zoomState.level + zoomState.offsetX}px`,
+                                top: `${chosenPOI.top * zoomState.level + zoomState.offsetY}px`,
+                                opacity: poiMarker.labelVisible ? 1 : 0
+                            }}>
                             {chosenPOI.name.toUpperCase()}
                         </p>
                     )}
