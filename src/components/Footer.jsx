@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Footer({ onOpen }) {
     return (
-        <footer className="p-3 flex justify-between items-center text-gray-500">
+        <footer className="p-3 flex justify-between items-center text-gray-700">
             <div className='ms-5 flex items-center'>
                 <p id='apeskinian'>
                     <a href="https://www.apeskinian.com" data-testid="footer-link" target="_blank" aria-label='visit my portfolio site'>apeskinian|</a>

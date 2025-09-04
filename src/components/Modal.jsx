@@ -5,7 +5,11 @@ export default function Modal({ open, onClose }) {
     const dialog = useRef();
 
     useEffect(() => {
+        const hasSeenModal = localStorage.getItem('seenModal')
         if (open) {
+            if (!hasSeenModal) {
+                localStorage.setItem('seenModal', 'true')
+            }
             dialog.current.showModal();
         } else {
             dialog.current.close();
@@ -13,14 +17,14 @@ export default function Modal({ open, onClose }) {
     }, [open]);
 
     return createPortal(
-        <dialog ref={dialog} className="help-modal" onClose={onClose} data-testid="modal" >
+        <dialog ref={dialog} onClose={onClose} data-testid="modal"
+            className="help-modal w-80 sm:w-fit"
+        >
             <div id="modal-title">
-                <h1>a|</h1>
-                <h2>lander</h2>
+                <h1>apeskinian|</h1>
             </div>
-            <p>Welcome to the <strong>apeskinian|</strong> Fortnite landing site picker!</p>
-            <p>Click on the map to get a landing site, click again to get another!</p>
-            <p>Choose between all POIs and just main ones at the top!</p>
+            <p>Click the map to get a site, click again to get another!</p>
+            <p>Choose between all POIs and main POIs above.</p>
             <button id="close-modal" onClick={onClose}>Close</button>
         </dialog>,
         document.getElementById('modal')

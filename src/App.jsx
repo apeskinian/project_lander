@@ -6,7 +6,8 @@ import Footer from './components/Footer.jsx'
 import { useState } from 'react'
 
 function App({ testMode = false }) {
-  const [openModal, setOpenModal] = useState(true);
+  const hasSeenModal = localStorage.getItem('seenModal')
+  const [openModal, setOpenModal] = useState(!hasSeenModal);
 
   function handleShowModal() {
     setOpenModal(true);
@@ -31,7 +32,7 @@ function App({ testMode = false }) {
     <>
       <POIProvider>
         <Header />
-        <Map modalState={openModal} onClose={handleCloseModal} onOpen={handleShowModal} />
+        <Map modalState={openModal} onClose={handleCloseModal} />
         <Footer onOpen={handleShowModal} />
       </POIProvider>
     </>
