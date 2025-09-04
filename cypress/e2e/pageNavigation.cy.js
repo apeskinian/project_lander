@@ -24,14 +24,6 @@ describe('a|lander', () => {
     // assert
     cy.get('.help-modal').should('not.exist')
   })
-  // it('closes the modal when the ESC key is pressed', () => {
-  //   // assert
-  //   cy.get('.help-modal').should('exist')
-  //   // act
-  //   // FIND A WAY TO DO THIS
-  //   // assert
-  //   cy.get('.help-modal').should('not.exist')
-  // })
 })
 
 describe('Header', () => {
