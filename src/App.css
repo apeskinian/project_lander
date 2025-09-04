@@ -127,3 +127,7 @@ h2 {
     background-color: #093576;
     color: white;
 }
+
+#close-modal, #help-icon {
+    cursor: pointer;
+}
