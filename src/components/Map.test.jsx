@@ -1,5 +1,5 @@
-import { render, screen, act } from '@testing-library/react'
-import { expect, it } from 'vitest'
+import { render, screen, act, fireEvent } from '@testing-library/react'
+import { expect, vi } from 'vitest'
 import userEvent from '@testing-library/user-event';
 import Map from './Map';
 
@@ -148,45 +148,60 @@ describe('Map component', () => {
     });
     it('zooms in to the POI and shows label after clicking the map', async () => {
         // arrange
+        vi.useFakeTimers()
         render(<Map />)
-        // act
         const main = screen.getByRole('main');
-        await userEvent.click(main);
-        await new Promise(res => setTimeout(res, 2200));
-        // assert
         const mapElement = screen.getByTestId('map')
+        // act
+        fireEvent.click(main)
+        await vi.runAllTimersAsync()
+        // assert
         const labelElement = screen.getByTestId('poi-label')
-        expect(mapElement.style.transform).toContain('scale(5)');
+        expect(mapElement).toHaveAttribute('data-zoom', '5')
         expect(labelElement).toBeInTheDocument();
+        vi.useRealTimers()
     })
     it('zooms out before zooming back for a new POIs', async () => {
         // arrange
+        vi.useFakeTimers()
         render(<Map />)
-        // act (click first to select first POI)
         const main = screen.getByRole('main');
-        await userEvent.click(main);
-        await new Promise(res => setTimeout(res, 2200));
+        const mapElement = screen.getByTestId('map')
+        // act (click first to select first POI)
+        await act(async () => {
+            fireEvent.click(main)
+            vi.advanceTimersByTime(2200)
+        })
         // assert (first POI is shown)
         const markerElement = screen.getByTestId('poi-marker')
         expect(markerElement).toBeInTheDocument();
+        expect(mapElement).toHaveAttribute('data-zoom', '5')
         // act (click again to get second POI)
-        await userEvent.click(main);
-        await new Promise(res => setTimeout(res, 200));
-        const mapElement = screen.getByTestId('map')
+        await act(async () => {
+            fireEvent.click(main)
+            vi.advanceTimersByTime(200)
+        })
         // assert (map zooms out)
-        expect(mapElement.style.transform).toContain('scale(1)');
+        expect(mapElement).toHaveAttribute('data-zoom', '1')
         // wait for map to zoom in again
-        await new Promise(res => setTimeout(res, 4500));
-        expect(mapElement.style.transform).toContain('scale(5)');
+        await act(async () => {
+            vi.advanceTimersByTime(4500)
+        })
+        expect(mapElement).toHaveAttribute('data-zoom', '5')
         // act (click again to get third POI)
-        await userEvent.click(main);
-        await new Promise(res => setTimeout(res, 200));
+        await act(async () => {
+            fireEvent.click(main)
+            vi.advanceTimersByTime(200)
+        })
         // assert (map zooms out)
-        expect(mapElement.style.transform).toContain('scale(1)');
-        // wait for map to zoom in again
-        await new Promise(res => setTimeout(res, 4500));
-        expect(mapElement.style.transform).toContain('scale(5)');
-    }, 16000)
+        expect(mapElement).toHaveAttribute('data-zoom', '1')
+        // wait for map to zoom in again 
+        await act(async () => {
+            vi.advanceTimersByTime(4500)
+        })
+        expect(mapElement).toHaveAttribute('data-zoom', '5')
+        vi.useRealTimers()
+    })
     it('prevents default zoom behaviour on double click', async () => {
         // arrange
         render(<Map />);
