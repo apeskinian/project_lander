@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest'
 import App from './App'
 
@@ -21,5 +22,25 @@ describe('App component', () => {
         expect(screen.getAllByRole('main')).toBeInTheDocument
         const footerLink = screen.getByTestId('footer-link')
         expect(footerLink).toHaveAttribute('href', 'https://www.apeskinian.com')
+    })
+    it('has openModel set to true when first launched', () => {
+        // arrange
+        render(<App testMode={true} />)
+        // assert
+        const modalState = screen.getByTestId('modal-state')
+        expect(modalState.textContent).toBe('Open')
+    })
+    it('sets openModal to false when handleCloseModal is called and true when handleShowModal is called', async () => {
+        // arrange
+        render(<App testMode={true} />)
+        const modalState = screen.getByTestId('modal-state')
+        // act
+        await userEvent.click(screen.getByTestId('close-btn'))
+        // assert
+        expect(modalState.textContent).toBe('Closed')
+        // act
+        await userEvent.click(screen.getByTestId('open-btn'))
+        // assert
+        expect(modalState.textContent).toBe('Open')
     })
 })
