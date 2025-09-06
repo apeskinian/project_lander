@@ -187,3 +187,30 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 ### Future Features
 
 There are no current plans for future features, the app is designed to be as minimal and efficient as possible.
+
+## Tools & Technologies
+
+| Tool / Tech | Use |
+| --- | --- |
+| [![Markdown Badge](https://img.shields.io/badge/Markdown-000?logo=markdown&logoColor=fff&style=for-the-badge)](https://markdown.2bn.dev) | Generate README and TESTING templates. |
+| [![Git Badge](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=for-the-badge)](https://git-scm.com) | Version control. (`git add`, `git commit`, `git push`) |
+| [![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=for-the-badge)](https://github.com) | Secure online code storage. |
+| [![VSCode](https://img.shields.io/badge/VSCode-0A66C2?logo=htmx&logoColor=fff&style=for-the-badge)](https://code.visualstudio.com) | Local IDE for development. |
+| [![GitHub Pages Badge](https://img.shields.io/badge/GitHub%20Pages-222?logo=githubpages&logoColor=fff&style=for-the-badge)](https://docs.github.com/en/pages) | Deploying React app to GitHub |
+| [![Cloudflare Badge](https://img.shields.io/badge/Cloudflare-F38020?logo=cloudflare&logoColor=fff&style=for-the-badge)](https://www.cloudflare.com/en-gb/) | Domain hosting and DNS forwarding to GitHub Pages |
+| [![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge)](https://react.dev/) | Frontend library for creating the site. |
+| [![Vite Badge](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff&style=for-the-badge)](https://vite.dev/) | Frontend Build Tool |
+| ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=for-the-badge) | Main site content and layout. |
+| ![JSX](https://img.shields.io/badge/JSX-F7DF1E?logo=htmx&logoColor=000&style=for-the-badge) | Main site content and layout. |
+| ![CSS Badge](https://img.shields.io/badge/CSS-639?logo=css&logoColor=fff&style=for-the-badge) | Design and layout. |
+| [![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge)](https://www.javascript.com) | User interaction on the site. |
+| [![Tailwind CSS Badge](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=for-the-badge)](https://tailwindcss.com/) | Front-end CSS framework for modern responsiveness. |
+| [![Vitest Badge](https://img.shields.io/badge/Vitest-6E9F18?logo=vitest&logoColor=fff&style=for-the-badge)](https://vitest.dev/) | Automated unit and integration testing. |
+| [![Cypress Badge](https://img.shields.io/badge/Cypress-69D3A7?logo=cypress&logoColor=fff&style=for-the-badge)](https://www.cypress.io/) | Automated end-to-end testing. |
+| [![Fortnite Badge](https://img.shields.io/badge/FortniteAPI-000?logo=fortnite&logoColor=fff&style=for-the-badge)](https://fortnite-api.com/) | Providing up-to-date data for Fortnite Battle Royale |
+| [![Balsamiq](https://img.shields.io/badge/Balsamiq-a4114f?logo=envato&logoColor=fff&style=for-the-badge)](https://balsamiq.com/) | Creating wireframes. |
+| [![Font Awesome Badge](https://img.shields.io/badge/Font%20Awesome-538DD7?logo=fontawesome&logoColor=fff&style=for-the-badge)](https://fontawesome.com/) | Icons. |
+| [![Microsoft Copilot](https://img.shields.io/badge/Copilot-000?logo=githubcopilot&logoColor=fff&style=for-the-badge)](https://copilot.microsoft.com/) | Help debug, troubleshoot, and explain things. |
+| [![Clop](https://img.shields.io/badge/Clop-e9cd72?logo=redhat&logoColor=000&style=for-the-badge)](https://lowtechguys.com/clop/) | Image optimisation. |
+| [![Cleanshot X](https://img.shields.io/badge/Cleanshot%20X-2ca2f1?logo=onlyoffice&logoColor=fff&style=for-the-badge)](https://cleanshot.com/) | 	Screenshot and screen recording capture. |
+| [![Math.js](https://img.shields.io/badge/Math.js-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge)](https://mathjs.org/) | Computing coordinates |
