@@ -214,3 +214,42 @@ There are no current plans for future features, the app is designed to be as min
 | [![Clop](https://img.shields.io/badge/Clop-e9cd72?logo=redhat&logoColor=000&style=for-the-badge)](https://lowtechguys.com/clop/) | Image optimisation. |
 | [![Cleanshot X](https://img.shields.io/badge/Cleanshot%20X-2ca2f1?logo=onlyoffice&logoColor=fff&style=for-the-badge)](https://cleanshot.com/) | 	Screenshot and screen recording capture. |
 | [![Math.js](https://img.shields.io/badge/Math.js-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge)](https://mathjs.org/) | Computing coordinates |
+
+## Agile Development Process
+
+### GitHub Projects
+
+[GitHub Projects](https://github.com/users/apeskinian/projects/12) served as an Agile tool for this project. Through it, User Stories, issues/bugs, and Milestone tasks were planned, then subsequently tracked on a regular basis using the Kanban project board.
+
+![Agile Tracker](documentation/agile/agile_tracker.png "Project Tracker")
+
+I also created an overview page where I could easily see at a glance the current progress in development. This allowed me to track start and finish dates along with adding prioritisation for bugs.
+
+![Agile Overview](documentation/agile/agile_overview.png "Project Overview")
+
+### GitHub Issues
+
+[GitHub Issues](https://www.github.com/apeskinian/project_lander/issues) served as an another Agile tool. There, I managed my User Stories and Milestone tasks, and tracked any issues/bugs.
+
+[![GitHub issues](https://img.shields.io/github/issues/apeskinian/project_lander)](https://www.github.com/apeskinian/project_lander/issues) [![GitHub closed issues](https://img.shields.io/github/issues-closed/apeskinian/project_lander)](https://www.github.com/apeskinian/project_lander/issues?q=is%3Aissue+is%3Aclosed)
+
+| Open Issues |
+| :---: |
+| ![Open Issues](documentation/agile/agile_issues_open.png "Open Issues") |
+
+| Closed Issues |
+| :---: |
+| ![Closed Issues](documentation/agile/agile_issues_closed.png "Closed Issues") |
+
+### MoSCoW Prioritization
+
+I've decomposed my Epics into User Stories for prioritizing and implementing them. Using this approach, I was able to apply "MoSCow" prioritization and labels to my User Stories within the Issues tab.
+
+- **Must Have**: guaranteed to be delivered - required to Pass the project (*max ~60% of stories*)
+- **Should Have**: adds significant value, but not vital (*~20% of stories*)
+- **Could Have**: has small impact if left out (*the rest ~20% of stories*)
+- **Won't Have**: not a priority for this iteration - future features
+
+The GitHub projects helped keep track of this with the creation of a graph.
+
+![MoSCoW Graph](documentation/agile/agile_moscow.png "Agile MoSCoW Graph")
