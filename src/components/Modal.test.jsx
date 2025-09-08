@@ -1,6 +1,5 @@
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event';
-import { expect } from 'vitest'
+import { render, screen } from '@testing-library/react';
+import { expect } from 'vitest';
 import Modal from './Modal';
 
 const onClose = vi.fn();
@@ -21,16 +20,16 @@ describe('Modal', () => {
     });
     it('loads a dialog when open is true', () => {
         // arrange
-        render(<Modal open={true} onClose={onClose} />)
+        render(<Modal open={true} onClose={onClose} />);
         // assert
-        const modalElement = screen.getByTestId('modal')
+        const modalElement = screen.getByTestId('modal');
         expect(modalElement).toBeInTheDocument();
-    })
+    });
     it('does not load a dialog when open is false', () => {
         // arrange
-        render(<Modal open={false} onClose={onClose} />)
+        render(<Modal open={false} onClose={onClose} />);
         // assert
-        const modalElement = screen.getByTestId('modal')
+        const modalElement = screen.getByTestId('modal');
         expect(modalElement).not.toBeVisible();
-    })
-})
+    });
+});

@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
-import { expect } from 'vitest'
-import { POIProvider, usePOI } from './usePOIS'
+import { render, screen } from '@testing-library/react';
+import { expect } from 'vitest';
+import { POIProvider, usePOI } from './usePOIS';
 import userEvent from '@testing-library/user-event';
 
 // create a test function to use the context
@@ -13,7 +13,7 @@ function TestComponent() {
             <span data-testid='reset'>{resetTimestamp}</span>
             <button onClick={triggerReset}>reset</button>
         </div>
-    )
+    );
 }
 
 describe('POIContext and usePOI hook', () => {
@@ -23,35 +23,35 @@ describe('POIContext and usePOI hook', () => {
             <POIProvider>
                 <TestComponent />
             </POIProvider>
-        )
+        );
         // assert
-        expect(screen.getByTestId('pois')).toHaveTextContent('all')
-    })
+        expect(screen.getByTestId('pois')).toHaveTextContent('all');
+    });
     it('toggles POIS correctly', async () => {
         // arrange
         render(
             <POIProvider>
                 <TestComponent />
             </POIProvider>
-        )
+        );
         const spanElement = screen.getByTestId('pois');
         const toggleButton = screen.getByText('toggle');
         // act
         await userEvent.click(toggleButton);
         // assert
-        expect(spanElement).toHaveTextContent('main')
+        expect(spanElement).toHaveTextContent('main');
         // act
         await userEvent.click(toggleButton);
         // assert
-        expect(spanElement).toHaveTextContent('all')
-    })
+        expect(spanElement).toHaveTextContent('all');
+    });
     it('triggerReset updates resetTimestamp', async () => {
         // arrange
         render (
             <POIProvider>
                 <TestComponent />
             </POIProvider>
-        )
+        );
         const beforeStamp = screen.getByTestId('reset').textContent;
         const resetButton = screen.getByText('reset');
         // act
@@ -59,5 +59,5 @@ describe('POIContext and usePOI hook', () => {
         // assert
         const afterStamp = screen.getByTestId('reset').textContent;
         expect(afterStamp).not.toBe(beforeStamp);
-    })
-})
+    });
+});
