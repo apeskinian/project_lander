@@ -265,3 +265,203 @@ After it finished crawling the entire site, it created a [sitemap.xml](/public/s
 ### Robots
 
 I've created the [robots.txt](/public/robots.txt) file in the public folder.
+
+## Testing
+
+> [!NOTE]
+> For all testing, please refer to the [TESTING.md](TESTING.md) file.
+
+## Deployment
+
+The live deployed application can be found deployed on [a|lander](https://lander.apeskinian.com).
+
+### GitHub Pages Deployment
+
+This project uses [GitHub Pages](https://pages.github.com), a free static site hosting service provided by GitHub, ideal for deploying static sites like those built with [Vite](https://vitejs.dev).
+
+Deployment steps are as follows, after account setup:
+
+- Create a new repository on GitHub (public or private depending on your plan).
+- Clone the repository locally and initialize your Vite React app.
+- Install the `gh-pages` package to enable deployment:
+  - `npm install --save-dev gh-pages`
+
+> [!IMPORTANT]
+> This is a sample only; you would replace the values with your own if cloning/forking my repository.
+
+Update your project files with the following:
+
+| File | Change |
+|------|--------|
+| `vite.config.js` | Add `base: "/<your-repo-name>/"` to the config object |
+| `package.json` | Add `"homepage": "https://<your-username>.github.io/<your-repo-name>"` |
+| `package.json > scripts` | Add `"predeploy": "npm run build"` and `"deploy": "gh-pages -d dist"` |
+
+Replace `<your-username>` and `<your-repo-name>` with your actual GitHub username and repository name.
+
+To deploy your app:
+
+- Run `npm run deploy` from the root of your project.
+- This will build your app and push the contents of the `dist/` folder to the `gh-pages` branch.
+
+> [!NOTE]
+> If you see your README instead of your app, go to your GitHub repository **Settings > Pages**, and select the `gh-pages` branch as the source.
+
+Your app should now be live at: **`https://<USERNAME>.github.io/<REPO-NAME>/`**
+
+You can customize your domain using a `CNAME` file in the `public/` folder.
+
+If you have your own packages that have been installed, then the dependencies file needs updating using:
+
+- `npm install <your-package>`
+- `npm run build`
+- `npm run deploy`
+
+To update your dependencies file:
+
+- `npm list --depth=0`
+- `npm install`
+- `npm update`
+- `npm audit fix` (optional)
+- `npm install --save-dev gh-pages` (if not already installed)
+
+The project should now be connected and deployed to GitHub Pages!
+
+> [!TIP]
+> For routing issues with React Router, consider using hash-based routing or adding a fallback `404.html` that redirects all paths to `index.html`.
+
+### Fortnite API (HTML Version)
+
+This project uses the [Fortnite-API](https://fortnite-api.com) to display public game data such as cosmetics, shop items, and events. The HTML version of the API allows you to embed content directly without needing an API key or authentication.
+
+To use the HTML endpoints, visit [Fortnite-API](https://fortnite-api.com) for more information on setup, available endpoints, and integration options.
+
+### Local Development
+
+This project can be cloned or forked in order to make a local copy on your own system.
+
+For either method, you will need to install any applicable packages found within the [package.json](package.json) file.
+
+- `npm install`
+
+You may also need to create a `.env` file at the root-level to store any environment variables used in your app (e.g. API keys, feature flags, or third-party service URLs).
+
+> [!IMPORTANT]
+> This is a sample only; you would replace the values with your own if cloning/forking my repository.
+
+Sample `.env` file:
+
+```env
+VITE_API_URL=https://your-api-endpoint.com
+VITE_PUBLIC_KEY=your-public-key
+VITE_FEATURE_FLAG=true
+```
+
+> [!IMPORTANT]
+> All environment variables must be prefixed with VITE_ to be exposed to your React app at build time.
+
+Once the project is cloned or forked, in order to run it locally, you'll need to follow these steps:
+- Start the development server: `npm run dev`
+- Open your browser and visit: http://localhost:5173 (default Vite port)
+- Make any necessary changes to your components, styles, or routes
+- Save your changes and Vite will hot-reload the app automatically
+
+To build the project for production:
+- Run: `npm run build`
+- Preview the production build locally: `npm run preview`
+
+> [!NOTE]
+> `npm run preview` simulates how your app will behave in production. It serves the contents of the dist/ folder.
+
+If you'd like to update your dependencies or regenerate your lock file:
+- `npm update`
+- `npm audit fix` (optional)
+- `npm install` (to refresh node_modules)
+
+Everything should now be ready for local development and testing!
+
+> [!TIP]
+> You can customize your Vite config in vite.config.js and structure your app using folders like src/components, src/pages, and src/assets for better maintainability.
+
+#### Cloning
+
+You can clone the repository by following these steps:
+
+1. Go to the [GitHub repository](https://www.github.com/apeskinian/project_lander).
+2. Locate and click on the green "Code" button at the very top, above the commits and files.
+3. Select whether you prefer to clone using "HTTPS", "SSH", or "GitHub CLI", and click the "copy" button to copy the URL to your clipboard.
+4. Open "Git Bash" or "Terminal".
+5. Change the current working directory to the location where you want the cloned directory.
+6. In your IDE Terminal, type the following command to clone the repository:
+	- `git clone https://www.github.com/apeskinian/project_lander.git`
+7. Press "Enter" to create your local clone.
+
+#### Forking
+
+By forking the GitHub Repository, you make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original owner's repository. You can fork this repository by using the following steps:
+
+1. Log in to GitHub and locate the [GitHub Repository](https://www.github.com/apeskinian/project_lander).
+2. At the top of the Repository, just below the "Settings" button on the menu, locate and click the "Fork" Button.
+3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
+
+### Cross-platform Development
+
+If you are using both Windows and macOS operating systems to develop on, you can use a `.gitattributes` file to help maintain consistent line endings and file handling across environments. This file should be saved in the root directory of your repository.
+
+Below is a recommended `.gitattributes` configuration for a Vite-based React project:
+
+```
+# Normalise all text files to use LF line endings
+* text=auto
+
+# Explicitly set LF for common web files
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+
+# Treat images and other binary assets correctly
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+*.webp binary
+*.ico binary
+```
+
+> [!NOTE]
+> This setup helps prevent unnecessary diffs and merge conflicts caused by inconsistent line endings, especially when collaborating across operating systems.
+
+Once added, you can re-normalize your repository with:
+
+- `git add --renormalize .`
+- `git commit -m "Normalize line endings via .gitattributes"`
+
+This ensures all tracked files follow the new rules without altering their actual content.
+
+### Local VS Deployment
+
+There are no major differences between the local version and the deployed version online in terms of functionality or layout.
+
+However, the deployed version is a **production build** of the React app, created using Vite’s build process. This means:
+
+- The code is minified and optimized for performance.
+- Static assets are bundled and served from the `dist/` folder.
+- Environment variables are baked in at build time (only those prefixed with `VITE_`).
+- Hot module reloading and development tools are disabled.
+
+To generate the production build locally, use:
+
+- `npm run build`
+
+To preview the production build before deploying:
+
+- `npm run preview`
+
+> [!NOTE]
+> The build process ensures faster load times and better performance for end users, but it also means that runtime changes to environment variables or config files won’t affect the deployed app unless you rebuild and redeploy.
