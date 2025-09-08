@@ -2,36 +2,36 @@ describe('a|lander', () => {
   beforeEach(() => {
     // act
     cy.visit('http://localhost:5173/');
-  })
+  });
   afterEach(() => {
-    cy.wait(500);
-  })
+    cy.wait(500);  // eslint-disable-line
+  });
   it('renders a header, main, and footer elements', () => {
     // assert
-    cy.get('header').should('exist')
-    cy.get('main').should('exist')
-    cy.get('footer').should('exist')
-  })
+    cy.get('header').should('exist');
+    cy.get('main').should('exist');
+    cy.get('footer').should('exist');
+  });
   it('shows the modal', () => {
     // assert
-    cy.get('.help-modal').should('exist')
-  })
+    cy.get('.help-modal').should('exist');
+  });
   it('closes the modal when the "Close" button is clicked', () => {
     // assert
-    cy.get('.help-modal').should('exist')
+    cy.get('.help-modal').should('exist');
     // act
-    cy.get('#close-modal').click()
+    cy.get('#close-modal').click();
     // assert
-    cy.get('.help-modal').should('not.exist')
-  })
-})
+    cy.get('.help-modal').should('not.exist');
+  });
+});
 
 describe('Header', () => {
   beforeEach(() => {
     // act
-    cy.visit('http://localhost:5173')
-    cy.get('#close-modal').click()
-  })
+    cy.visit('http://localhost:5173');
+    cy.get('#close-modal').click();
+  });
   it('has an element "a|" that links to the portfolio site', () => {
     // assert
     cy.get('#a')
@@ -44,37 +44,37 @@ describe('Header', () => {
       .then(href => {
         cy.request(href).its('status').should('eq', 200);
       });
-    })
-  })
+    });
+  });
   it('has an element "lander" that resets the map', () => {
     // assert
-    cy.get('#lander').should('exist')
+    cy.get('#lander').should('exist');
     cy.pickPOI();
-    cy.assertMapScale(5)
-    cy.get('#lander').click()
-    cy.assertMapScale(1)
-  })
+    cy.assertMapScale(5);
+    cy.get('#lander').click();
+    cy.assertMapScale(1);
+  });
   it('has a toggle element that switches POI sets and resets the map when toggled', () => {
     // assert
-    cy.get('#poi-toggle').should('exist')
+    cy.get('#poi-toggle').should('exist');
     cy.get('#showing-pois').should('exist')
-    .and('contain', 'All POIs')
+    .and('contain', 'All POIs');
     cy.pickPOI();
-    cy.assertMapScale(5)
-    cy.get('#poi-toggle').click()
-    cy.assertMapScale(1)
-    cy.get('#showing-pois').should('contain', 'Main POIs')
-  })
-})
+    cy.assertMapScale(5);
+    cy.get('#poi-toggle').click();
+    cy.assertMapScale(1);
+    cy.get('#showing-pois').should('contain', 'Main POIs');
+  });
+});
 
 describe('Footer', () => {
   beforeEach(() => {
     // act
-    cy.visit('http://localhost:5173')
-  })
+    cy.visit('http://localhost:5173');
+  });
   afterEach(() => {
-    cy.wait(500);
-  })
+    cy.wait(500); // eslint-disable-line
+  });
   it('has a link "apeskinian|" to the portfolio site', () => {
     // assert
     cy.get('#apeskinian')
@@ -88,19 +88,19 @@ describe('Footer', () => {
       .then(href => {
         cy.request(href).its('status').should('eq', 200);
       });
-    })
-  })
+    });
+  });
   it('has an "i" icon to show the modal', () => {
     // assert
-    cy.get('#help-icon').should('exist')
-  })
+    cy.get('#help-icon').should('exist');
+  });
   it('clicking the "i" icon shows the modal', () => {
     // assert
-    cy.get('.help-modal').should('not.exist')
+    cy.get('.help-modal').should('not.exist');
     cy.get('#help-icon').should('exist')
     // act
-    .click()
+    .click();
     // assert
-    cy.get('.help-modal').should('exist')
-  })
-})
+    cy.get('.help-modal').should('exist');
+  });
+});

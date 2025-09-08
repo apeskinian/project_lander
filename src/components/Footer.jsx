@@ -15,5 +15,5 @@ export default function Footer({ onOpen }) {
                 </button>
             </div>
         </footer>
-    )
+    );
 }

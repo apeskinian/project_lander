@@ -1,4 +1,4 @@
-import { usePOI } from "../context/usePOIS"
+import { usePOI } from "../context/usePOIS";
 
 export default function Header() {
     const { showFullPOIS, setShowFullPOIS, triggerReset } = usePOI();
@@ -22,5 +22,5 @@ export default function Header() {
                 />
             </div>
         </header>
-    )
+    );
 }

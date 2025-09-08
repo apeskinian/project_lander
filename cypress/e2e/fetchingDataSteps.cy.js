@@ -1,7 +1,7 @@
 describe('While fetching data', () => {
     afterEach(() => {
-        cy.wait(2000);
-    })
+        cy.wait(2000); // eslint-disable-line
+    });
     it('shows loading when the data is being fetched', () => {
         // arrange
         // simulate delay in fetching data
@@ -14,8 +14,8 @@ describe('While fetching data', () => {
         cy.visit('http://localhost:5173/');
         // assert
         cy.get('.message-block').should('be.visible')
-            .and('contain', 'Loading map data...')
-    })
+            .and('contain', 'Loading map data...');
+    });
     it('shows an error when an error is thrown while fetching data', () => {
         // arrange
         // simulate error in fetching data
@@ -26,8 +26,8 @@ describe('While fetching data', () => {
         cy.visit('http://localhost:5173/');
         // assert
         cy.get('.message-block').should('be.visible')
-            .and('contain', 'Error loading map:')
-    })
+            .and('contain', 'Error loading map:');
+    });
     it('shows a message when no data is available', () => {
         // arrange
         // simulate data returned is null
@@ -39,6 +39,6 @@ describe('While fetching data', () => {
         cy.visit('http://localhost:5173/');
         // assert
         cy.get('.message-block').should('be.visible')
-            .and('contain', 'No map data available.')
-    })
-})
+            .and('contain', 'No map data available.');
+    });
+});
