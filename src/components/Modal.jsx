@@ -5,10 +5,10 @@ export default function Modal({ open, onClose }) {
     const dialog = useRef();
 
     useEffect(() => {
-        const hasSeenModal = localStorage.getItem('seenModal')
+        const hasSeenModal = localStorage.getItem('seenModal');
         if (open) {
             if (!hasSeenModal) {
-                localStorage.setItem('seenModal', 'true')
+                localStorage.setItem('seenModal', 'true');
             }
             dialog.current.showModal();
         } else {
