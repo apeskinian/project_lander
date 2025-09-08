@@ -1,12 +1,12 @@
-import './App.css'
-import { POIProvider } from './context/usePOIS.jsx'
-import Header from './components/Header.jsx'
-import Map from './components/Map.jsx'
-import Footer from './components/Footer.jsx'
-import { useState } from 'react'
+import './App.css';
+import { POIProvider } from './context/usePOIS.jsx';
+import Header from './components/Header.jsx';
+import Map from './components/Map.jsx';
+import Footer from './components/Footer.jsx';
+import { useState } from 'react';
 
 function App({ testMode = false }) {
-  const hasSeenModal = localStorage.getItem('seenModal')
+  const hasSeenModal = localStorage.getItem('seenModal');
   const [openModal, setOpenModal] = useState(!hasSeenModal);
 
   function handleShowModal() {
@@ -36,6 +36,6 @@ function App({ testMode = false }) {
         <Footer onOpen={handleShowModal} />
       </POIProvider>
     </>
-  )
+  );
 }
-export default App
+export default App;
