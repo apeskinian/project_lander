@@ -20,12 +20,12 @@ export default function Map({ modalState, onClose }) {
     const showNextPOI = useRef(null);
     const isChoosing = useRef(false);
     // state
-    const [chosenPOI, setChosenPOI] = useState()
-    const [poiMarker, setPoiMarker] = useState({ targetVisible: false, labelVisible: false, size: '2rem' })
+    const [chosenPOI, setChosenPOI] = useState();
+    const [poiMarker, setPoiMarker] = useState({ targetVisible: false, labelVisible: false, size: '2rem' });
     const [imageSize, setImageSize] = useState({ width: 2048, height: 2048 });
-    const [zoomState, setZoomState] = useState({ level: 1, offsetX: 0, offsetY: 0 })
+    const [zoomState, setZoomState] = useState({ level: 1, offsetX: 0, offsetY: 0 });
 
-    const transform = `translate(${zoomState.offsetX}px, ${zoomState.offsetY}px) scale(${zoomState.level})`
+    const transform = `translate(${zoomState.offsetX}px, ${zoomState.offsetY}px) scale(${zoomState.level})`;
 
     /*
      * sets an observer on the image and clears the current POI state if the
@@ -37,8 +37,8 @@ export default function Map({ modalState, onClose }) {
         const observer = new ResizeObserver(([entry]) => {
             const { width, height } = entry.contentRect;
             setImageSize({ width, height });
-            setChosenPOI(null)
-            zoomOutReset()
+            setChosenPOI(null);
+            zoomOutReset();
         });
         if (imageRef.current) observer.observe(imageRef.current);
         return () => observer.disconnect();
@@ -62,7 +62,7 @@ export default function Map({ modalState, onClose }) {
                 {(error || (!mapData && !loading)) && (<p>Please try reloading the page, if this keeps happening, please contact me.</p>)}
             </div>
         </main>
-    )
+    );
 
     /* 
      * getting all landing zones from mapData according to current chosen
@@ -85,8 +85,8 @@ export default function Map({ modalState, onClose }) {
         }
         setPoiMarker(prevState => ({ ...prevState, targetVisible: false, labelVisible: false }));
         setTimeout(() => {
-            setZoomState({ level: 1, offsetX: 0, offsetY: 0 })
-        }, 200)
+            setZoomState({ level: 1, offsetX: 0, offsetY: 0 });
+        }, 200);
     }
 
     /*
@@ -101,7 +101,7 @@ export default function Map({ modalState, onClose }) {
         const { left, top } = gameToImage(pickedPOI.location.x, pickedPOI.location.y, imageSize);
         // set chosen POI and show marker
         setChosenPOI({ name: pickedPOI.name, left, top });
-        setPoiMarker(prevState => ({ ...prevState, targetVisible: true, size: '2rem' }))
+        setPoiMarker(prevState => ({ ...prevState, targetVisible: true, size: '2rem' }));
         // zooms in to chosen POI, marker size is reduced
         setTimeout(() => {
             const zoom = 5;
@@ -112,7 +112,7 @@ export default function Map({ modalState, onClose }) {
             const scaledTop = top * zoom;
             const offsetX = containerWidth / 2 - scaledLeft;
             const offsetY = containerHeight / 2 - scaledTop;
-            setZoomState({ level: zoom, offsetX, offsetY })
+            setZoomState({ level: zoom, offsetX, offsetY });
             setPoiMarker(prevState => ({ ...prevState, size: '0.8rem' }));
         }, 750);
         // show label
@@ -120,7 +120,7 @@ export default function Map({ modalState, onClose }) {
             isChoosing.current = false;
         }, 2200);
         labelAppearance.current = setTimeout(() => {
-            setPoiMarker(prevState => ({ ...prevState, labelVisible: true }))
+            setPoiMarker(prevState => ({ ...prevState, labelVisible: true }));
         }, 2200);
     }
 
@@ -182,5 +182,5 @@ export default function Map({ modalState, onClose }) {
                 </div>
             </main >
         </>
-    )
+    );
 }
