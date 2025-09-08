@@ -3,7 +3,7 @@ import { useMapData } from './useMapData';
 
 describe('useMapData', () => {
     beforeEach(() => {
-        global.fetch = vi.fn();
+        globalThis.fetch = vi.fn();
     });
     afterEach(() => {
         vi.resetAllMocks();
