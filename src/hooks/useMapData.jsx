@@ -26,5 +26,5 @@ export function useMapData() {
         fetchMapData();
     }, []);
 
-    return { mapData, loading, error }
+    return { mapData, loading, error };
 }
