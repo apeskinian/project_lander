@@ -44,5 +44,5 @@ Cypress.Commands.add('pickPOI', () => {
         .and('be.visible')
         .invoke('width')
         .should('be.greaterThan', 0);
-    cy.get('main').click()
-})
+    cy.get('main').click();
+});
