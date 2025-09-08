@@ -465,3 +465,29 @@ To preview the production build before deploying:
 
 > [!NOTE]
 > The build process ensures faster load times and better performance for end users, but it also means that runtime changes to environment variables or config files won’t affect the deployed app unless you rebuild and redeploy.
+
+## Credits
+
+### Content
+
+| Source | Notes |
+| --- | --- |
+| [Markdown Builder](https://markdown.2bn.dev/) | Tool used for templating the Markdown files |
+| [React Udemy Course](https://www.udemy.com/course/react-the-complete-guide-incl-redux/) | Course for learning React |
+| [Tailwind Documentation](https://tailwindcss.com/docs/installation/using-vite) | Using Tailwind with Vite |
+| [Fortnite-API](https://fortnite-api.com/) | Map image and POI data used in the app |
+| [Microsoft Copilot](https://copilot.microsoft.com/) | Help with code logic and explanations |
+
+### Media
+
+#### Icons
+| Source | Location | Type | Notes |
+| --- | --- | --- | --- |
+| [SVGREPO](https://www.svgrepo.com/svg/24339/parachute) | Entire site | Favicon | PNG used for favicon generation |
+| [Favicon Generator](https://favicon.io/favicon-converter/) | Entire site | Favicon | Icon generated from parachute png downloaded from SVGREPO |
+| [Font Awesome](https://fontawesome.com) | Icons used throughout the site | Icons | See [typography](#icons) full all icons used |
+
+### Acknowledgements
+
+- I would like to thank my sister Natalie and my good friend, [Tim Nelson](https://github.com/TravelTimN) for their feedback and testing throughout the development of this project.
+- I would like to thank my daughter Niamh, my sisters Laura & Natalie and my whole family for the continued moral support; it keeps me going during periods of self doubt and imposter syndrome.
