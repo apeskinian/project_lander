@@ -14,6 +14,7 @@ export function POIProvider({ children }) {
         </POIContext.Provider>
     );
 }
+// eslint-disable-next-line react-refresh/only-export-components
 export function usePOI() {
     return useContext(POIContext);
 }
