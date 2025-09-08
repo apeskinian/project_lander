@@ -253,3 +253,15 @@ I've decomposed my Epics into User Stories for prioritizing and implementing the
 The GitHub projects helped keep track of this with the creation of a graph.
 
 ![MoSCoW Graph](documentation/agile/agile_moscow.png "Agile MoSCoW Graph")
+
+## SEO
+
+### Sitemap
+
+I've used [XML-Sitemaps](https://www.xml-sitemaps.com) to generate a sitemap.xml file. This was generated using my deployed site URL: https://lander.apeskinian.com
+
+After it finished crawling the entire site, it created a [sitemap.xml](/public/sitemap.xml), which I've downloaded and included in the repository.
+
+### Robots
+
+I've created the [robots.txt](/public/robots.txt) file in the public folder.
