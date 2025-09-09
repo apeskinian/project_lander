@@ -133,17 +133,18 @@ Defensive programming was manually tested with the below user acceptance testing
 ### Page Navigation
 | Expectation | Test | Result | Screenshot |
 | --- | --- | --- | --- |
-| A help modal is shown to the user on first visit to the site. | Visit the site for the first time. |  |  |
-| The help modal is not shown automatically if the user revisits the site. | After the first visit, refresh the page. |  |  |
-| The help modal can be closed with the 'close' button. | Click on the 'close' button of the help modal. |  |  |
-| The help modal can be closed with the 'escape' key. | Press the 'escape' key on the keyboard when the help modal is displayed. |  |  |
-| Clicking on the **a\|** portion of the page title will open the [portfolio](https://www.apeskinian.com) site in a new browser tab. | Click on the **a\|** in the page header. |  |  |
-| Clicking on the toggle at the top of the page will switch between **All POIs** and **Main POIs** being shown. | Click the toggle input in the page header. |  |  |
-| Clicking on the **apeskinian\|** link at the bottom of the page will open the [portfolio](https://www.apeskinian.com) site in a new browser tab. | Click on the **apeskinian\|** link in the page footer. |  |  |
-| Clicking on the **i** button at the bottom of the page will show the help modal. | Click on the **i** button in the page footer. |  |  |
-| When the API is being accessed, a loading indicator is shown to the user. | Throttle loading speeds in the browser and reload the page. |  |  |
-| If there is an error loading the data the user is shown a message. | In a development server manually create an error when fetching data. |  |  |
-| If there is no data available the user is shown a message. | In a development server, do not send any map data to the client. |  |  |
+| A help modal is shown to the user on first visit to the site. | Visit the site for the first time. | SUCCESS - the modal is shown. | ![screen recording](documentation/testing/manual/navigation/help_modal_show.gif) |
+| The help modal is not shown automatically if the user revisits the site. | After the first visit, refresh the page. | SUCCESS - the modal does not appear automatically. | ![screen recording](documentation/testing/manual/navigation/help_modal_not_shown_again.gif) |
+| Clicking outside the modal when it is shown does nothing. | When the help modal is being shown, try and click the map and other elements. | SUCCESS - the modal stays open. | ![screen recording](documentation/testing/manual/navigation/help_modal_clicking_around.gif) |
+| The help modal can be closed with the 'close' button. | Click on the 'close' button of the help modal. | SUCCESS - the modal is closed. | ![screen recording](documentation/testing/manual/navigation/help_modal_close_button.gif) |
+| The help modal can be closed with the 'escape' key. | Press the 'escape' key on the keyboard when the help modal is displayed. | SUCCESS - the modal is closed. | ![screen recording](documentation/testing/manual/navigation/help_modal_escape_key.gif) |
+| Clicking on the **a\|** portion of the page title will open the [portfolio](https://www.apeskinian.com) site in a new browser tab. | Click on the **a\|** in the page header. | SUCCESS - the user is taken to the [portfolio](https://www.apeskinian.com) site in a new browser tab. | ![screen recording](documentation/testing/manual/navigation/portfolio_link_a.gif) |
+| Clicking on the toggle at the top of the page will switch between **All POIs** and **Main POIs** being shown. | Click the toggle input in the page header. | SUCCESS - the POI sets are switched. | ![screen recording](documentation/testing/manual/navigation/toggle_click.gif) |
+| Clicking on the **apeskinian\|** link at the bottom of the page will open the [portfolio](https://www.apeskinian.com) site in a new browser tab. | Click on the **apeskinian\|** link in the page footer. | SUCCESS - the user is taken to the [portfolio](https://www.apeskinian.com) site in a new browser tab. | ![screen recording](documentation/testing/manual/navigation/portfolio_link_apeskinian.gif) |
+| Clicking on the **i** button at the bottom of the page will show the help modal. | Click on the **i** button in the page footer. | SUCCESS - the modal is shown. | ![screen recording](documentation/testing/manual/navigation/modal_shown_with_i.gif) |
+| When the API is being accessed, a loading indicator is shown to the user. | In a development server simulate a delay and reload the page. | SUCCESS - a loading message can be seen. | ![screen recording](documentation/testing/manual/navigation/loading_message.gif) |
+| If there is an error loading the data the user is shown a message. | In a development server manually create an error when fetching data. | SUCCESS - an error message is displayed. | ![screen recording](documentation/testing/manual/navigation/error_message.gif) |
+| If there is no data available the user is shown a message. | In a development server, do not send any map data to the client. | SUCCESS - a no map data message is displayed. | ![screen recording](documentation/testing/manual/navigation/no_map_data_message.gif) |
 
 ### POI Picking
 | Expectation | Test | Result | Screenshot |
