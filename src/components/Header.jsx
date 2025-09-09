@@ -12,7 +12,7 @@ export default function Header() {
                 <h2 id="lander" onClick={triggerReset}>lander</h2>
             </div>
             <div className="flex items-center gap-3">
-                <p id="showing-pois">{showFullPOIS ? 'All POIs' : 'Main POIs'}</p>
+                <label id="showing-pois" htmlFor="poi-toggle" aria-label="click to change poi sets">{showFullPOIS ? 'All POIs' : 'Main POIs'}</label>
                 <input
                     id="poi-toggle"
                     className="toggle"
