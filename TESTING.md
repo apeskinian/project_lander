@@ -154,3 +154,6 @@ Defensive programming was manually tested with the below user acceptance testing
 | Clicking on the toggle at the top of the page will also clear any current POI selection and reset the map. | Click on the toggle input when a POI is being shown. |  |  |
 | Clicking on the **lander** portion of the page title will cancel any current selection mid-process and reset the map. | Click on the **lander** portion of the title when a POI is actively being selected. |  |  |
 | Clicking on the toggle at the top of the page will cancel any current selection mid-process and reset the map. | Click on the toggle input when a POI is actively being selected. |  |  |
+| Clicking on the map multiple times while a POI is being selected will not interrupt the process.  | When a POI is actively being selected, click the map multiple times. |  |  |
+| Clicking on the map multiple times while a POI is being selected will not queue up multiple clicks and start a chain of selections. | When a POI is actively being selected, click the map multiple times. |  |  |
+| Double tapping on a mobile device will not activate a zoom in. | Double tap the screen on a mobile device. |  |  |
