@@ -125,3 +125,32 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | Mobile | Desktop | Notes |
 | --- | --- | --- |
 | ![lighthouse](documentation/testing/lighthouse/lighthouse_mobile.png) | ![lighthouse](documentation/testing/lighthouse/lighthouse_desktop.png) | Mobile performance is slower in lighthouse test. |
+
+## Defensive Programming
+
+Defensive programming was manually tested with the below user acceptance testing:
+
+### Page Navigation
+| Expectation | Test | Result | Screenshot |
+| --- | --- | --- | --- |
+| A help modal is shown to the user on first visit to the site. | Visit the site for the first time. |  |  |
+| The help modal is not shown automatically if the user revisits the site. | After the first visit, refresh the page. |  |  |
+| The help modal can be closed with the 'close' button. | Click on the 'close' button of the help modal. |  |  |
+| The help modal can be closed with the 'escape' key. | Press the 'escape' key on the keyboard when the help modal is displayed. |  |  |
+| Clicking on the **a\|** portion of the page title will open the [portfolio](https://www.apeskinian.com) site in a new browser tab. | Click on the **a\|** in the page header. |  |  |
+| Clicking on the toggle at the top of the page will switch between **All POIs** and **Main POIs** being shown. | Click the toggle input in the page header. |  |  |
+| Clicking on the **apeskinian\|** link at the bottom of the page will open the [portfolio](https://www.apeskinian.com) site in a new browser tab. | Click on the **apeskinian\|** link in the page footer. |  |  |
+| Clicking on the **i** button at the bottom of the page will show the help modal. | Click on the **i** button in the page footer. |  |  |
+| When the API is being accessed, a loading indicator is shown to the user. | Throttle loading speeds in the browser and reload the page. |  |  |
+| If there is an error loading the data the user is shown a message. | In a development server manually create an error when fetching data. |  |  |
+| If there is no data available the user is shown a message. | In a development server, do not send any map data to the client. |  |  |
+
+### POI Picking
+| Expectation | Test | Result | Screenshot |
+| --- | --- | --- | --- |
+| Clicking on the map displays a marker to a POI and then zooms in to show a label for the POI. | Click on the map. |  |  |
+| If a POI is already being shown, clicking the map again will clear the POI, zoom out, select a new POI, show a marker, and zoom in again to show the label for the POI. | When a POI is already being shown, click on the map. |  |  |
+| Clicking on the **lander** portion of the page title will clear any current POI selection and reset the map. | Click on the **lander** portion of the title when a POI is being shown. |  |  |
+| Clicking on the toggle at the top of the page will also clear any current POI selection and reset the map. | Click on the toggle input when a POI is being shown. |  |  |
+| Clicking on the **lander** portion of the page title will cancel any current selection mid-process and reset the map. | Click on the **lander** portion of the title when a POI is actively being selected. |  |  |
+| Clicking on the toggle at the top of the page will cancel any current selection mid-process and reset the map. | Click on the toggle input when a POI is actively being selected. |  |  |
