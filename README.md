@@ -489,5 +489,5 @@ To preview the production build before deploying:
 
 ### Acknowledgements
 
-- I would like to thank my sister Natalie and my good friend, [Tim Nelson](https://github.com/TravelTimN) for their feedback and testing throughout the development of this project.
-- I would like to thank my daughter Niamh, my sisters Laura & Natalie and my whole family for the continued moral support; it keeps me going during periods of self doubt and imposter syndrome.
+- I would like to thank my sister Natalie, and my good friend [Tim Nelson](https://github.com/TravelTimN) for their feedback and testing throughout the development of this project.
+- I would like to thank my daughter Niamh, my sisters Laura & Natalie, and my whole family for the continued moral support; it keeps me going during periods of self doubt and imposter syndrome.

@@ -271,3 +271,39 @@ Below are the results from the full E2E test suite that I ran using Cypress:
 | [fetchingDataSteps.cy.js](/cypress/e2e/fetchingDataSteps.cy.js) | ![cypress test](documentation/testing/automated_testing/cypress/fetchingDataSteps.gif) |
 | [pageNavigation.cy.js](/cypress/e2e/pageNavigation.cy.js) | ![cypress test](documentation/testing/automated_testing/cypress/pageNavigation.gif) |
 | [poiPicking.cy.js](/cypress/e2e/poiPicking.cy.js) | ![cypress test](documentation/testing/automated_testing/cypress/poiPicking.gif) |
+
+## Bugs
+
+I've used [GitHub Issues](https://github.com/apeskinian/project_lander/issues?q=is%3Aissue%20label%3Abug) to track and manage bugs and issues during the development stages of my project.
+
+### Fixed Bugs
+
+[![GitHub issue custom search](https://img.shields.io/github/issues-search?query=repo%3Aapeskinian%2Fproject_lander%20label%3Abug&label=bugs)](https://www.github.com/apeskinian/project_lander/issues?q=is%3Aissue+is%3Aclosed+label%3Abug)
+
+All previously closed/fixed bugs can be tracked [here](https://www.github.com/apeskinian/project_lander/issues?q=is%3Aissue+is%3Aclosed+label%3Abug).
+
+| Bug | Status |
+| --- | --- |
+| [[BUG] - Welcome modal is still visible underneath map on closing](https://github.com/apeskinian/project_lander/issues/17) | Closed |
+| [[BUG] - POI label visible on reset](https://github.com/apeskinian/project_lander/issues/14) | Closed |
+
+### Closed Issues
+
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/apeskinian/project_lander)](https://github.com/apeskinian/project_lander/issues?q=is%3Aissue+is%3Aclosed)
+
+Closed issues can be tracked [here](https://github.com/apeskinian/project_lander/issues?q=is%3Aissue+is%3Aclosed)
+
+### Open Issues
+
+[![GitHub open issues](https://img.shields.io/github/issues/apeskinian/project_lander)](https://www.github.com/apeskinian/project_lander/issues)
+
+Any remaining open issues can be tracked [here](https://www.github.com/apeskinian/project_lander/issues).
+
+| Issue | Status |
+| --- | --- |
+| [[BUG] - ESLint warning about fast refresh](https://github.com/apeskinian/project_lander/issues/18) | Unfixed Bug |
+
+### Other Known Issues
+
+> [!IMPORTANT]
+> There are no remaining bugs that I am aware of, though, even after thorough testing, I cannot rule out the possibility.
