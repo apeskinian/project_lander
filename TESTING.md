@@ -182,3 +182,92 @@ Defensive programming was manually tested with the below user acceptance testing
 | As a developer | I should perform manual testing across key user flows and devices | so that I can validate real-world usability, catch edge cases not covered by automation, and ensure a smooth experience for all users. | [Defensive Programming](#defensive-programming) |
 
 ## Automated Testing
+
+### React (Unit Testing with Vitest & Coverage)
+
+I used Vitest alongside React Testing Library to validate component behavior and generate coverage reports.
+
+**Installation**
+
+To get started, I installed Vitest and the coverage provider:
+
+`npm install --save-dev vitest @vitest/coverage-v8`
+
+**Configuration**
+
+In `vite.config.js` I added the following to configure the tests:
+
+```
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.ts',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html'],
+      include: ['src/**/*.{js,jsx,ts,tsx}'],
+      exclude: ['src/main.jsx']
+    },
+```
+
+I also added the following line in `package.json` to run the test package from a script:
+
+```
+"scripts": {
+  "test": "vitest run --coverage"
+}
+```
+
+**Running Tests**
+
+Tests were run and a coverage report was created with `npm run test`
+
+**Coverage Reports**
+
+After the tests run, coverage generates both a terminal report and a html version. The html version can be found in the coverage folder in the root directory of the app.
+
+| Terminal Report | HTML Report |
+| --- | --- |
+| ![screenshot](documentation/testing/automated_testing/coverage_reports/coverage_terminal_report.png) | ![screenshot](documentation/testing/automated_testing/coverage_reports/coverage_html_report.png) |
+
+**Individual File Reports**
+| File | Coverage | Screenshot |
+| --- | --- | --- |
+| [App.jsx](/src/App.jsx) | 100% | ![coverage report](documentation/testing/automated_testing/coverage_reports/coverage_App.png) |
+| [Footer.jsx](/src/components/Footer.jsx) | 100% | ![coverage report](documentation/testing/automated_testing/coverage_reports/coverage_Footer.png) |
+| [Header.jsx](/src/components/Header.jsx) | 100% | ![coverage report](documentation/testing/automated_testing/coverage_reports/coverage_Header.png) |
+| [Map.jsx](/src/components/Map.jsx) | 100% | ![coverage report](documentation/testing/automated_testing/coverage_reports/coverage_Map.png) |
+| [Modal.jsx](/src/components/Modal.jsx) | 100% | ![coverage report](documentation/testing/automated_testing/coverage_reports/coverage_Modal.png) |
+| [usePOIS.jsx](/src/context/usePOIS.jsx) | 100% | ![coverage report](documentation/testing/automated_testing/coverage_reports/coverage_usePOIS.png) |
+| [useMapData.jsx](/src/hooks/useMapData.jsx) | 100% | ![coverage report](documentation/testing/automated_testing/coverage_reports/coverage_useMapData.png) |
+| [pixelMap.js](/src/util/pixelMap.js) | 100% | ![coverage report](documentation/testing/automated_testing/coverage_reports/coverage_pixelMap.png) |
+
+### Cypress (E2E Testing)
+
+I used Cypress to validate the end-to-end functionality of the application, simulating real user interactions across critical flows.
+
+To install Cypress, I ran the following command:
+
+`npm install --save-dev cypress`
+
+To launch the Cypress Test Runner in interactive mode, I ran:
+
+`npx cypress open`
+
+This opened a GUI where I could select and run E2E test specs, inspect DOM snapshots, and debug test flows in real time.
+
+To run all tests in the terminal (useful for CI or quick checks), I used:
+
+`npx cypress run`
+
+I structured my test files under the cypress/e2e/ directory, and used Cypress’s built-in commands like cy.visit(), cy.get(), and cy.contains() to simulate user behavior and assert expected outcomes.
+
+Below are the results from the full E2E test suite that I ran using Cypress:
+
+![cypress summary](documentation/testing/automated_testing/cypress/cypress_summary.png)
+
+| Test File | Running Tests |
+| --- | --- |
+| [fetchingDataSteps.cy.js](/cypress/e2e/fetchingDataSteps.cy.js) | ![cypress test](documentation/testing/automated_testing/cypress/fetchingDataSteps.gif) |
+| [pageNavigation.cy.js](/cypress/e2e/pageNavigation.cy.js) | ![cypress test](documentation/testing/automated_testing/cypress/pageNavigation.gif) |
+| [poiPicking.cy.js](/cypress/e2e/poiPicking.cy.js) | ![cypress test](documentation/testing/automated_testing/cypress/poiPicking.gif) |
