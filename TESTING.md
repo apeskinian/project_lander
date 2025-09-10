@@ -157,3 +157,28 @@ Defensive programming was manually tested with the below user acceptance testing
 | Clicking on the toggle at the top of the page will cancel any current selection mid-process and reset the map. | Click on the toggle input when a POI is actively being selected. | SUCCESS - the current POI selection process was cancelled and the map reset. | ![screen recording](documentation/testing/manual/poi_picking/toggle_cancel.gif) |
 | Clicking on the map multiple times while a POI is being selected will not interrupt the process.  | When a POI is actively being selected, click the map multiple times. | SUCCESS - the POI selection was not interrupted. | ![screen recording](documentation/testing/manual/poi_picking/mullticlick.gif) |
 | Clicking on the map multiple times while a POI is being selected will not queue up multiple clicks and start a chain of selections. | When a POI is actively being selected, click the map multiple times. | SUCCESS - multiple clicks were not queued. | ![screen recording](documentation/testing/manual/poi_picking/mullticlick.gif) |
+
+## User Story Testing
+
+## User Stories
+
+| Target | Expectation | Outcome | Screenshot |
+| --- | --- | --- | --- |
+| As a user | I can be given a place to land in Fortnite Battle Royale | so that I don't have to worry about choosing where to land. | ![screenshot](documentation/testing/manual/poi_picking/pick_first_poi.gif) |
+| As a user | I can interact with the app using simple taps or clicks | so that I can quickly get a result without complex navigation.  | ![screenshot](documentation/testing/manual/poi_picking/pick_first_poi.gif) |
+| As a user | I can easily request a new POI | so that I have a new landing site for the next Battle Royale. | ![screenshot](documentation/testing/manual/poi_picking/pick_next_pois.gif) |
+| As a user | I can choose whether to use just the main POIs or the full set of POIs | so that I can either focus on landing in the main areas or decide to explore a little further for more challenging starts. | ![screenshot](documentation/testing/manual/navigation/toggle_click.gif) |
+| As a user | I can toggle between POI sets easily | so that I don't have to spend too much time on preferences. | ![screenshot](documentation/testing/manual/navigation/toggle_click.gif) |
+| As a user | I can see the chosen POI focused and zoomed in on the map | so that know exactly where to land. | ![screenshot](documentation/testing/responsiveness/macbook_poi.png) |
+| As a user | I can see the name of the POI | so that I know where I am landing. | ![screenshot](documentation/testing/responsiveness/iphone_portrait_poi.PNG) |
+| As a user | I can access and use the app on mobile devices | so that I can use it wherever I play Fortnite. | ![screenshot](documentation/testing/responsiveness/iphone_portrait_map.PNG) |
+| As a user | I can install the app as a PWA on my homescreen | so that it feels like a native app with fast access. | ![screenshot](documentation/testing/user_story_testing/pwa_installation.gif) |
+| As a user | I can see a welcome message on first launch | so that I understand how to use the app. | ![screenshot](documentation/testing/manual/navigation/help_modal_show.gif) |
+| As a user | I can use the app without needing to sign in | so that I can jump straight into gameplay without any friction. | ![screenshot](documentation/testing/manual/navigation/help_modal_show.gif) |
+| As a user | I can use the app in portrait mode | so that it adapts to how I hold my device. | ![screenshot](documentation/testing/responsiveness/ipadmini_pwa_portrait_map.PNG) |
+| As a user | I can use the app in landscape mode | so that it adapts to how I hold my device. | ![screenshot](documentation/testing/responsiveness/ipadmini_pwa_landscape_map.PNG) |
+| As a user | I can rely that the map and POIs are up to date | so that I don't need to worry about having to input anything myself to update it. | ![screenshot](documentation/testing/user_story_testing/updating_data.png) |
+| As a developer | I should carry out automated testing on all applicable files | so that I catch problems early and ensure consistent behaviour across updates. | [Automated Testing](#automated-testing) |
+| As a developer | I should perform manual testing across key user flows and devices | so that I can validate real-world usability, catch edge cases not covered by automation, and ensure a smooth experience for all users. | [Defensive Programming](#defensive-programming) |
+
+## Automated Testing
