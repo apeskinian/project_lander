@@ -21,7 +21,7 @@ Data for this app is provided by [Fortnite-API](https://fortnite-api.com/).
 
 ![screenshot](documentation/lander-mockup.png)
 
-source: [Am I Responsive Multi Device Website Mockup Generator](https://ui.dev/amiresponsive?url=https://lander.apeskinian.com/)
+Mockup produced with [Rotato](https://rotato.app/)
 
 ## UX
 
