@@ -8,6 +8,7 @@ import { useState } from 'react';
 function App({ testMode = false }) {
   const hasSeenModal = localStorage.getItem('seenModal');
   const [openModal, setOpenModal] = useState(!hasSeenModal);
+  const [darkMode, setDarkMode] = useState(false);
 
   function handleShowModal() {
     setOpenModal(true);
@@ -15,6 +16,10 @@ function App({ testMode = false }) {
 
   function handleCloseModal() {
     setOpenModal(false);
+  }
+
+  function handleChangeMode() {
+    setDarkMode(prevMode => prevMode = !prevMode);
   }
 
 
@@ -31,9 +36,9 @@ function App({ testMode = false }) {
   return (
     <>
       <POIProvider>
-        <Header />
-        <Map modalState={openModal} onClose={handleCloseModal} />
-        <Footer onOpen={handleShowModal} />
+        <Header darkMode={darkMode} changeMode={handleChangeMode}/>
+        <Map modalState={openModal} darkMode={darkMode} onClose={handleCloseModal} />
+        <Footer darkMode={darkMode} onOpen={handleShowModal} />
       </POIProvider>
     </>
   );

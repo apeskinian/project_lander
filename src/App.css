@@ -39,7 +39,7 @@ h1 {
 }
 
 h2 {
-    color: #4a5568;
+    /* color: #4a5568; */
     font-family: 'Fira Sans', sans-serif;
     font-weight: 300;
     font-size: 1.8rem;
@@ -80,8 +80,6 @@ h2 {
     font-family: 'Fira Sans', sans-serif;
     font-weight: 400;
     font-size: 1.2rem;
-    color: #4a5568;
-
 }
 
 #map {
@@ -128,6 +126,16 @@ h2 {
     color: white;
 }
 
-#close-modal, #help-icon {
+#close-modal, #help-icon, #mode-change {
     cursor: pointer;
+}
+
+.light-mode {
+    background-color: white;
+    color: #505050;
+}
+
+.dark-mode {
+    background-color: #505050;
+    color: white;
 }

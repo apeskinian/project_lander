@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 
-export default function Modal({ open, onClose }) {
+export default function Modal({ open, onClose, darkMode }) {
     const dialog = useRef();
 
     useEffect(() => {
@@ -18,7 +18,7 @@ export default function Modal({ open, onClose }) {
 
     return createPortal(
         <dialog ref={dialog} onClose={onClose} data-testid="modal"
-            className="help-modal w-80 sm:w-fit"
+            className={`help-modal w-80 sm:w-fit${darkMode ? ' dark-mode' : 'light-mode'}`}
         >
             <div id="modal-title">
                 <h1>apeskinian|</h1>

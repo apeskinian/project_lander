@@ -8,7 +8,7 @@ import { gameToImage } from "../util/pixelMap";
 
 import Modal from "./Modal";
 
-export default function Map({ modalState, onClose }) {
+export default function Map({ modalState, onClose, darkMode }) {
     // context hooks
     const { showFullPOIS, resetTimestamp } = usePOI();
     //custom hooks
@@ -148,7 +148,7 @@ export default function Map({ modalState, onClose }) {
 
     return (
         <>
-            {modalState && <Modal open={modalState} onClose={onClose} />}
+            {modalState && <Modal darkMode={darkMode} open={modalState} onClose={onClose} />}
             <main onClick={handleChooseLocation} onDoubleClick={handleDoubleClick}>
                 <div id="map-container" className="relative">
                     <div id='map' data-testid='map' data-zoom={zoomState.level} ref={zoomRef} style={{ transform }}>
