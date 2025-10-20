@@ -130,11 +130,11 @@ h2 {
 }
 
 .light-mode {
-    background-color: white;
-    color: #505050;
+    background-color: rgb(255, 255, 255);
+    color: rgb(20, 20, 20);
 }
 
 .dark-mode {
-    background-color: #505050;
-    color: white;
+    background-color: rgb(20, 20, 20);
+    color: rgb(240, 240, 240);
 }
