@@ -8,7 +8,10 @@ import { useState } from 'react';
 function App({ testMode = false }) {
   const hasSeenModal = localStorage.getItem('seenModal');
   const [openModal, setOpenModal] = useState(!hasSeenModal);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const storedMode = localStorage.getItem('darkMode');
+    return storedMode !== null ? storedMode === 'true' : false;
+  });
 
   function handleShowModal() {
     setOpenModal(true);
@@ -19,7 +22,11 @@ function App({ testMode = false }) {
   }
 
   function handleChangeMode() {
-    setDarkMode(prevMode => prevMode = !prevMode);
+    setDarkMode(prevMode => {
+      const newMode = !prevMode;
+      localStorage.setItem('darkMode', newMode.toString());
+      return newMode;
+    });
   }
 
 
