@@ -28,6 +28,7 @@ import { create, all } from 'mathjs';
 //     { gameX: -79387, gameY: -20064, pixelX: 434, pixelY: 880 }
 // ];
 
+// Control points for Simpsons mini season map which is smaller.
 const CONTROL_POIS = [
     { gameX: -16612, gameY: -42712, pixelX: 655, pixelY: 435 },
     { gameX: 46304, gameY: -49352, pixelX: 1461, pixelY: 350 },
