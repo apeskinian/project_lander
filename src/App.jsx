@@ -10,7 +10,7 @@ function App({ testMode = false }) {
   const [openModal, setOpenModal] = useState(!hasSeenModal);
   const [darkMode, setDarkMode] = useState(() => {
     const storedMode = localStorage.getItem('darkMode');
-    return storedMode !== null ? storedMode === 'true' : false;
+    return storedMode !== null ? storedMode === 'true' : true;
   });
 
   function handleShowModal() {
