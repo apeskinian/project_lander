@@ -36,6 +36,8 @@ function App({ testMode = false }) {
         <button data-testid="open-btn" onClick={handleShowModal}>Open Modal</button>
         <button data-testid="close-btn" onClick={handleCloseModal}>Close Modal</button>
         <div data-testid="modal-state">{openModal ? 'Open' : 'Closed'}</div>
+        <button data-testid="mode-btn" onClick={handleChangeMode}>Mode Change</button>
+        <div data-testid="mode-state">{darkMode ? 'true' : 'false'}</div>
       </>
     );
   }

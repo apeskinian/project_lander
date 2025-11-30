@@ -43,4 +43,41 @@ describe('App component', () => {
         // assert
         expect(modalState.textContent).toBe('Open');
     });
+    it('has dark mode set to dark when first launched', () => {
+        // arrange
+        localStorage.clear();
+        render(<App testMode={true} />);
+        // assert
+        const modeState = screen.getByTestId('mode-state');
+        expect(modeState.textContent).toBe('true');
+    });
+    it('sets dark mode true when localStorage is "true"', () => {
+        // arrange
+        localStorage.setItem('darkMode', 'true');
+        render(<App testMode={true} />);
+        // assert
+        const modeState = screen.getByTestId('mode-state');
+        expect(modeState.textContent).toBe('true');
+    });
+    it('sets dark mode false when localStorage is "false"', () => {
+        // arrange
+        localStorage.setItem('darkMode', 'false');
+        render(<App testMode={true} />);
+        // assert
+        const modeState = screen.getByTestId('mode-state');
+        expect(modeState.textContent).toBe('false');
+    });
+    it('toggles between dark and light mode', async () => {
+        // arrange
+        render(<App testMode={true} />);
+        const modeState = screen.getByTestId('mode-state');
+        const initialMode = modeState.textContent;
+        // act
+        await userEvent.click(screen.getByTestId('mode-btn'));
+        if (initialMode === 'true') {
+            expect((screen.getByTestId('mode-state')).textContent).toBe('false');
+        } else if (initialMode === 'false') {
+            expect((screen.getByTestId('mode-state')).textContent).toBe('true');
+        }
+    });
 });
