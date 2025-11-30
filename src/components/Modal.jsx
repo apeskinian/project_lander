@@ -18,7 +18,7 @@ export default function Modal({ open, onClose, darkMode }) {
 
     return createPortal(
         <dialog ref={dialog} onClose={onClose} data-testid="modal"
-            className={`help-modal w-80 sm:w-fit${darkMode ? ' dark-mode' : 'light-mode'}`}
+            className={`help-modal w-80 sm:w-fit${darkMode ? ' dark-mode' : ' light-mode'}`}
         >
             <div id="modal-title">
                 <h1>apeskinian|</h1>

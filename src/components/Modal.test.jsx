@@ -32,4 +32,18 @@ describe('Modal', () => {
         const modalElement = screen.getByTestId('modal');
         expect(modalElement).not.toBeVisible();
     });
+    it('has " dark-mode" class added when dark mode is on', () => {
+        // arrange
+        render(<Modal open={true} onClose={onClose} darkMode={true}/>);
+        // assert
+        const modalElement = screen.getByTestId('modal');
+        expect(modalElement).toHaveClass('dark-mode');
+    });
+    it('has " light-mode" class added when dark mode is off', () => {
+        // arrange
+        render(<Modal open={true} onClose={onClose} darkMode={false}/>);
+        // assert
+        const modalElement = screen.getByTestId('modal');
+        expect(modalElement).toHaveClass('light-mode');
+    });
 });
