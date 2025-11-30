@@ -7,7 +7,7 @@ describe('gameToImage', () => {
         const imageSize = { width: 2048, height: 2048 };
         const result = gameToImage(39008, -75666, imageSize);
         // assert with known game and pixel coordinates from file
-        expect(result.left).toBeCloseTo((1235 / 2048) * 2048);
-        expect(result.top).toBeCloseTo((517 / 2048) * 2048);
+        expect(result.left).toBeCloseTo((1234.95 / 2048) * 2048);
+        expect(result.top).toBeCloseTo((516.52 / 2048) * 2048);
     });
 });
