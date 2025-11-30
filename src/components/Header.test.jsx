@@ -12,6 +12,12 @@ vi.mock('../context/usePOIS', () => ({
     usePOI: () => ({ showFullPOIS: showFullPOISValue, setShowFullPOIS, triggerReset }),
 }));
 
+// mocking the font awesome icons
+vi.mock('@fortawesome/react-fontawesome', () => ({
+    FontAwesomeIcon: () => <span data-testid="icon" />,
+}));
+vi.mock('@fortawesome/free-solid-svg-icons', () => ({ faCircleHalfStroke: {} }));
+
 describe('Header component', () => {
     // reset mock hook values to default before each test
     beforeEach(() => {
