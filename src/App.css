@@ -86,23 +86,21 @@ h2 {
     transform-origin: top left;
 }
 
-#map::before,
-#map::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 15%;
-}
-
-#map::before {
-    left: 0;
-    background: linear-gradient(to right, #102129, transparent);
-}
-
-#map::after {
-    right: 0;
-    background: linear-gradient(to left, #102129, transparent);
+#map-image {
+    position: relative;
+    border-radius: 10%;
+    mask-image:
+        linear-gradient(to right, transparent, black 20%, black 80%, transparent),
+        linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    mask-composite: intersect;
+    -webkit-mask-image:
+        linear-gradient(to right, transparent, black 20%, black 80%, transparent),
+        linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-composite: intersect;
 }
 
 .message-block {

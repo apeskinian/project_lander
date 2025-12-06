@@ -152,7 +152,7 @@ export default function Map({ modalState, onClose, darkMode }) {
             <main onClick={handleChooseLocation} onDoubleClick={handleDoubleClick}>
                 <div id="map-container" className="relative">
                     <div id='map' data-testid='map' data-zoom={zoomState.level} ref={zoomRef} style={{ transform }}>
-                        <img src={mapData.images.blank} alt='Fortnite POIs map' ref={imageRef} />
+                        <img id="map-image" src={mapData.images.blank} alt='Fortnite POIs map' ref={imageRef} />
                         {chosenPOI && (
                             <div
                                 id="poi-marker" data-testid="poi-marker"
