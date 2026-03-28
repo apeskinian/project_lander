@@ -21,7 +21,7 @@
     "@fortawesome/react-fontawesome": "^3.0.0",
     "@tailwindcss/vite": "^4.1.11",
     "gh-pages": "^6.3.0",
-    "mathjs": "^14.6.0",
+    "mathjs": "^15.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.11"
